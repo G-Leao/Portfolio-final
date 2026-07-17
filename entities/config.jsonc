@@ -1,0 +1,24 @@
+{
+  // Application configuration
+  "app": {
+    "name": "base44",
+    "version": "1.0.0",
+    "description": "Portfolio application",
+    "url": "https://base44.dev",
+  },
+  "auth": {
+    "providers": ["email", "google"],
+    "sessionDuration": 86400,
+    "resetTokenExpiry": 3600,
+  },
+  "api": {
+    "baseUrl": "http://localhost:3000/api",
+    "timeout": 10000,
+    "retryAttempts": 3,
+  },
+  "features": {
+    "darkMode": true,
+    "animations": true,
+    "particles": true,
+  },
+}
