@@ -1,38 +1,52 @@
-import { useRef, useState } from "react";
-import { cn } from "../lib/utils";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function MagneticButton({ children, className, ...props }) {
+const VARIANTS = {
+  primary:
+    "bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40 hover:shadow-xl",
+  secondary:
+    "border border-white/15 text-slate-200 hover:border-cyan-400/40 hover:text-cyan-300 backdrop-blur-sm bg-white/[0.02]",
+  ghost: "text-slate-400 hover:text-cyan-300",
+};
+
+export default function MagneticButton({
+  children,
+  onClick,
+  variant = "primary",
+  className = "",
+  type = "button",
+}) {
   const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 20 });
+  const springY = useSpring(y, { stiffness: 300, damping: 20 });
 
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) * 0.3;
-    const y = (clientY - (top + height / 2)) * 0.3;
-    setPosition({ x, y });
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    x.set((e.clientX - cx) * 0.25);
+    y.set((e.clientY - cy) * 0.25);
   };
 
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
+  const reset = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
-    <button
+    <motion.button
       ref={ref}
-      className={cn(
-        "relative inline-flex items-center justify-center transition-transform duration-200 ease-out",
-        className,
-      )}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-      }}
+      type={type}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      {...props}
+      onMouseLeave={reset}
+      onClick={onClick}
+      style={{ x: springX, y: springY }}
+      whileTap={{ scale: 0.96 }}
+      className={`relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm tracking-wide transition-all duration-300 cursor-pointer focus:outline-none ${VARIANTS[variant]} ${className}`}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
-import { cn } from "../../lib/utils";
+
+import { cn } from "@/lib/utils";
 
 const Breadcrumb = React.forwardRef(({ ...props }, ref) => (
   <nav ref={ref} aria-label="breadcrumb" {...props} />
@@ -32,6 +33,7 @@ BreadcrumbItem.displayName = "BreadcrumbItem";
 const BreadcrumbLink = React.forwardRef(
   ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "a";
+
     return (
       <Comp
         ref={ref}
@@ -59,7 +61,7 @@ const BreadcrumbSeparator = ({ children, className, ...props }) => (
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:size-3.5", className)}
+    className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)}
     {...props}
   >
     {children ?? <ChevronRight />}
@@ -78,7 +80,7 @@ const BreadcrumbEllipsis = ({ className, ...props }) => (
     <span className="sr-only">More</span>
   </span>
 );
-BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
+BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
 
 export {
   Breadcrumb,

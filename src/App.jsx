@@ -1,73 +1,94 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Toaster } from "@/components/ui/toaster";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/query-client";
-import { AuthProvider } from "./lib/AuthContext";
-import { ROUTES } from "./lib/app-params";
-import FloatingNav from "./components/FloatingNav";
-import ScrollToTop from "./components/ScrollToTop";
-import ParticleField from "./components/ParticleField";
-import AuthLayout from "./components/AuthLayout";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { queryClientInstance } from "@/lib/query-client";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PageNotFound from "./lib/PageNotFound";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Experience from "./pages/Experience";
-import Projects from "./pages/Projects";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
+import { AuthProvider } from "@/lib/AuthContext";
+import { AnimatePresence } from "framer-motion";
+import ParticleField from "@/components/ParticleField";
+import FloatingNav from "@/components/FloatingNav";
+import CubeStage from "@/components/CubeStage";
+import Loader from "@/components/Loader";
+
+function Experience() {
+  const [loading, setLoading] = useState(true);
+  const [activePage, setActivePage] = useState("home");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleNavigate = (page) => setActivePage(page);
+
+  return (
+    <div className="relative min-h-screen w-full bg-[#020617] text-slate-100">
+      {/* Ambient gradient layers */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.06), transparent 60%), radial-gradient(ellipse 60% 50% at 80% 100%, rgba(99,102,241,0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 10% 60%, rgba(99,102,241,0.04), transparent 60%)",
+        }}
+      />
+      {/* Subtle grid texture */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.015]"
+        style={{
+          zIndex: 0,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+
+      <ParticleField />
+
+      <AnimatePresence>{loading && <Loader key="loader" />}</AnimatePresence>
+
+      {!loading && (
+        <>
+          {activePage !== "home" && (
+            <FloatingNav activePage={activePage} onNavigate={handleNavigate} />
+          )}
+          <div className="relative" style={{ zIndex: 2 }}>
+            <CubeStage activePage={activePage} onNavigate={handleNavigate} />
+          </div>
+
+          {/* Corner brand mark */}
+          <div className="fixed bottom-5 left-6 z-40 pointer-events-none">
+            <div className="text-[10px] font-mono tracking-[0.3em] text-slate-600">
+              Gustavo Leão © 2026
+            </div>
+          </div>
+          {/* Corner status */}
+          <div className="fixed bottom-5 right-6 z-40 pointer-events-none hidden md:block">
+            <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.2em] text-slate-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400/60 animate-pulse-glow" />
+              SYSTEM ONLINE
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AuthProvider>
-          <ScrollToTop />
-          <ParticleField />
-          <FloatingNav />
+    <AuthProvider>
+      <QueryClientProvider client={queryClientInstance}>
+        <Router>
           <Routes>
-            <Route path={ROUTES.HOME} element={<Home />} />
-            <Route path={ROUTES.ABOUT} element={<About />} />
-            <Route path={ROUTES.CONTACT} element={<Contact />} />
-            <Route path={ROUTES.EXPERIENCE} element={<Experience />} />
-            <Route path={ROUTES.PROJECTS} element={<Projects />} />
-
-            {/* Auth routes */}
-            <Route element={<AuthLayout />}>
-              <Route path={ROUTES.LOGIN} element={<Login />} />
-              <Route path={ROUTES.REGISTER} element={<Register />} />
-              <Route
-                path={ROUTES.FORGOT_PASSWORD}
-                element={<ForgotPassword />}
-              />
-              <Route
-                path={`${ROUTES.RESET_PASSWORD}/:token`}
-                element={<ResetPassword />}
-              />
-            </Route>
-
-            {/* Protected routes */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <div className="min-h-screen py-20 px-4">
-                    <h1 className="text-4xl font-bold text-center">
-                      Dashboard
-                    </h1>
-                  </div>
-                </ProtectedRoute>
-              }
-            />
-
-            {/* 404 */}
+            <Route path="/" element={<Experience />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </AuthProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+        </Router>
+        <Toaster />
+      </QueryClientProvider>
+    </AuthProvider>
   );
 }
 

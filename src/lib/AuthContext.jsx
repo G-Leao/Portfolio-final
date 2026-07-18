@@ -1,92 +1,86 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { auth } from "@/api/authClient";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  const [authError, setAuthError] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
 
-  const login = useCallback(async (email, password) => {
-    setLoading(true);
-    setError(null);
-    try {
-      // Simulate API call
-      const response = await new Promise((resolve) =>
-        setTimeout(
-          () =>
-            resolve({
-              id: "1",
-              email,
-              name: "User",
-              role: "user",
-            }),
-          1000,
-        ),
-      );
-      setUser(response);
-      return response;
-    } catch (err) {
-      setError(err.message);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    checkAuth();
   }, []);
 
-  const logout = useCallback(() => {
+  const checkAuth = async () => {
+    try {
+      setIsLoadingAuth(true);
+      setAuthError(null);
+
+      // Check if user has a valid token
+      const token = auth.getToken();
+      if (!token) {
+        setIsLoadingAuth(false);
+        setIsAuthenticated(false);
+        setAuthChecked(true);
+        return;
+      }
+
+      // Try to get current user
+      const currentUser = await auth.me();
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      setAuthChecked(true);
+    } catch (error) {
+      console.error("Auth check failed:", error);
+      setIsAuthenticated(false);
+      setAuthChecked(true);
+
+      if (error.status === 401 || error.status === 403) {
+        setAuthError({
+          type: "auth_required",
+          message: "Authentication required",
+        });
+      }
+    } finally {
+      setIsLoadingAuth(false);
+    }
+  };
+
+  const logout = (shouldRedirect = true) => {
     setUser(null);
-  }, []);
+    setIsAuthenticated(false);
+    auth.logout(shouldRedirect ? window.location.href : undefined);
+  };
 
-  const register = useCallback(async (email, password, name) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await new Promise((resolve) =>
-        setTimeout(
-          () =>
-            resolve({
-              id: "2",
-              email,
-              name,
-              role: "user",
-            }),
-          1000,
-        ),
-      );
-      setUser(response);
-      return response;
-    } catch (err) {
-      setError(err.message);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const navigateToLogin = () => {
+    auth.redirectToLogin(window.location.href);
+  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        loading,
-        error,
-        login,
+        isAuthenticated,
+        isLoadingAuth,
+        authError,
+        authChecked,
         logout,
-        register,
-        isAuthenticated: !!user,
+        navigateToLogin,
+        checkAuth,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuth() {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-}
-
-export default AuthContext;
+};

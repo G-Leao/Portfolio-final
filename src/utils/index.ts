@@ -1,3 +1,3 @@
-export { cn, formatDate, truncate, generateId } from "../lib/utils";
-
-export type { ClassValue } from "clsx";
+export function createPageUrl(pageName: string) {
+  return "/" + pageName.replace(/ /g, "-");
+}
