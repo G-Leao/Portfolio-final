@@ -10,8 +10,7 @@ const PROJECTS = [
     description:
       "Meu portfólio desenvolvido em React com foco em performance, design moderno e experiência do usuário.",
     tech: ["React", "Vite", "CSS", "JavaScript"],
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    image: "",
     github: "https://github.com/G-Leao",
     live: "https://gustavoleao.dev",
   },
@@ -21,8 +20,7 @@ const PROJECTS = [
     description:
       "Sistema desenvolvido para gerenciamento de vendas, clientes e fluxo comercial.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    image: "",
     github: "https://github.com/G-Leao",
     live: "#",
   },
@@ -32,8 +30,7 @@ const PROJECTS = [
     description:
       "Aplicação para cadastro e gerenciamento de usuários utilizando JavaScript.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    image: "",
     github: "https://github.com/G-Leao",
     live: "#",
   },
@@ -43,8 +40,7 @@ const PROJECTS = [
     description:
       "Tela de autenticação moderna com design responsivo e experiência do usuário otimizada.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    image: "",
     github: "https://github.com/G-Leao",
     live: "#",
   },

@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, Send, Check } from "lucide-react";
+import logoImg from "@/assets/img/logoGustavo.png";
 
 const SOCIALS = [
   {
     icon: Mail,
     label: "Email",
-    href: "mailto:gustavoleao.dev@gmail.com",
-    value: "gustavoleao.dev@gmail.com",
+    href: "mailto:dev.g.leao@gmail.com",
+    value: "dev.g.leao@gmail.com",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/gustavoleao",
-    value: "/in/gustavoleao",
+    href: "https://www.linkedin.com/in/gustavo-leaodev/",
+    value: "/in/gustavo-leaodev/",
   },
   {
     icon: Github,
@@ -45,6 +46,20 @@ export default function Contact({ onNavigate }) {
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24">
+      {/* Logo no canto superior esquerdo */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        className="absolute top-6 left-6 md:top-8 md:left-10 lg:left-16 z-10"
+      >
+        <img
+          src={logoImg}
+          alt="Gustavo Leão"
+          className="h-8 md:h-40 w-auto object-contain"
+        />
+      </motion.div>
+
       {/* Dynamic glow */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
@@ -64,7 +79,7 @@ export default function Contact({ onNavigate }) {
           className="text-center mb-12"
         >
           <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-4">
-            // CONTATO
+            CONTATOS
           </div>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
             Vamos construir <span className="text-gradient">algo</span>

@@ -89,6 +89,169 @@
   .text-shadow-glow {
     text-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
   }
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  .animate-shine {
+    animation: shine 1.5s ease-in-out;
+  }
+  .animate-logo-halo {
+    animation: logo-halo 7s ease-in-out infinite;
+  }
+  .animate-logo-aura {
+    animation: logo-aura 5s ease-in-out infinite;
+  }
+  .animate-particle-1 {
+    animation: particle-1 3s ease-in-out infinite;
+  }
+  .animate-particle-2 {
+    animation: particle-2 3.5s ease-in-out infinite;
+  }
+  .animate-particle-3 {
+    animation: particle-3 4s ease-in-out infinite;
+  }
+  .animate-particle-4 {
+    animation: particle-4 4.5s ease-in-out infinite;
+  }
+  .animate-particle-5 {
+    animation: particle-5 3.2s ease-in-out infinite;
+  }
+  .animate-logo-shine {
+    animation: logo-shine 9s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes logo-halo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes logo-aura {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes particle-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(30px, -10px) scale(0.5);
+    opacity: 0.12;
+  }
+  100% {
+    transform: translate(60px, -20px) scale(0.15);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(35px, 8px) scale(0.45);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(70px, 16px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(25px, -14px) scale(0.5);
+    opacity: 0.08;
+  }
+  100% {
+    transform: translate(50px, -28px) scale(0.12);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(40px, 12px) scale(0.4);
+    opacity: 0.07;
+  }
+  100% {
+    transform: translate(80px, 24px) scale(0.08);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-5 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(28px, -6px) scale(0.55);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(56px, -12px) scale(0.12);
+    opacity: 0;
+  }
+}
+
+@keyframes logo-shine {
+  0%,
+  100% {
+    transform: translateX(-150%) skewX(-12deg);
+  }
+  8% {
+    transform: translateX(150%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(300%) skewX(-12deg);
+  }
 }
 
 ::-webkit-scrollbar {

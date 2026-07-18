@@ -51,7 +51,11 @@ function Experience() {
       {!loading && (
         <>
           {activePage !== "home" && (
-            <FloatingNav activePage={activePage} onNavigate={handleNavigate} />
+            <FloatingNav
+              activePage={activePage}
+              onNavigate={handleNavigate}
+              showLogo={activePage === "projects"}
+            />
           )}
           <div className="relative" style={{ zIndex: 2 }}>
             <CubeStage activePage={activePage} onNavigate={handleNavigate} />

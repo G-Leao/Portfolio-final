@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import logoImg from "@/assets/img/logoGustavo.png";
 import {
   Home as HomeIcon,
   User,
@@ -34,11 +35,12 @@ export default function FloatingNav({
     >
       {/* Logo - apenas na Home */}
       {showLogo && (
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="text-xl font-heading font-bold text-gradient cursor-pointer"
-        >
-          GL
+        <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer">
+          <img
+            src={logoImg}
+            alt="Gustavo Leão"
+            className="h-8 md:h-40 w-auto object-contain"
+          />
         </motion.div>
       )}
 

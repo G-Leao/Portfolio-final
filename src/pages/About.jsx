@@ -1,8 +1,22 @@
 import { motion } from "framer-motion";
-import { Target, Sparkles, Compass, ArrowRight } from "lucide-react";
+import {
+  Target,
+  Sparkles,
+  Compass,
+  ArrowRight,
+  Code2,
+  Palette,
+  Database,
+  Layout,
+  Globe,
+  Smartphone,
+  GitBranch,
+  Terminal,
+} from "lucide-react";
+import ABOUT_IMAGE from "../assets/img/gustavo.jpeg";
+import logoImg from "@/assets/img/logoGustavo.png";
 
-const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop";
+const About_Image = ABOUT_IMAGE;
 
 const VALUES = [
   {
@@ -22,36 +36,36 @@ const VALUES = [
   },
 ];
 
-const JOURNEY = [
-  {
-    year: "2024 //",
-    title: "Estudante de Engenharia de Software",
-    org: "Universidade",
-    desc: "Focado em desenvolvimento web e interfaces modernas, desenvolvendo projetos próprios para construir uma carreira sólida na área de tecnologia.",
-  },
-  {
-    year: "2023 //",
-    title: "Consultor de Vendas",
-    org: "Gravina Jóias e Relógios",
-    desc: "Atendimento ao cliente, organização, negociação e desenvolvimento de habilidades interpessoais essenciais para o trabalho em equipe.",
-  },
-  {
-    year: "2022 //",
-    title: "Início do Aprendizado",
-    org: "Autodidata",
-    desc: "Comecei a estudar desenvolvimento web com HTML, CSS e JavaScript. Apaixonado por tecnologia e interfaces modernas.",
-  },
-  {
-    year: "2021 //",
-    title: "O Início",
-    org: "Primeiros Passos",
-    desc: "Descobri a paixão pela programação e pelo desenvolvimento front-end. Decidi seguir carreira na área de tecnologia.",
-  },
+const SKILLS = [
+  { name: "HTML5", level: 85, icon: Code2 },
+  { name: "CSS3", level: 80, icon: Palette },
+  { name: "JavaScript", level: 50, icon: Terminal },
+  { name: "React", level: 45, icon: Layout },
+  { name: "Tailwind CSS", level: 25, icon: Palette },
+  { name: "TypeScript", level: 10, icon: Code2 },
+  { name: "Git", level: 40, icon: GitBranch },
+  { name: "Responsividade", level: 60, icon: Smartphone },
+  { name: "APIs REST", level: 15, icon: Globe },
+  { name: "SQL", level: 10, icon: Database },
 ];
 
 export default function About({ onNavigate }) {
   return (
     <section className="relative w-full min-h-screen py-24 md:py-28 px-6 md:px-10 lg:px-16">
+      {/* Logo no canto superior esquerdo */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        className="absolute top-6 left-6 md:top-8 md:left-10 lg:left-16 z-10"
+      >
+        <img
+          src={logoImg}
+          alt="Gustavo Leão"
+          className="h-8 md:h-40 w-auto object-contain"
+        />
+      </motion.div>
+
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1fr] gap-10 lg:gap-16">
         {/* Left: Identity */}
         <div className="lg:sticky lg:top-24 self-start">
@@ -128,7 +142,7 @@ export default function About({ onNavigate }) {
           </motion.div>
         </div>
 
-        {/* Right: Chronology */}
+        {/* Right: Skills */}
         <div className="relative">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -136,51 +150,137 @@ export default function About({ onNavigate }) {
             transition={{ duration: 0.7 }}
           >
             <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-4">
-              // JORNADA
+              // SKILLS
             </div>
             <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight mb-10">
-              Minha Trajetória
+              Tecnologias & Ferramentas
             </h3>
           </motion.div>
 
-          <div className="relative pl-8">
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400/50 via-indigo-500/30 to-transparent" />
-
-            {JOURNEY.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  delay: 0.2 + i * 0.14,
-                  duration: 0.7,
-                  ease: [0.23, 1, 0.32, 1],
-                }}
-                className="relative mb-10 last:mb-0"
-              >
-                <div className="absolute -left-[34px] top-1.5 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.7)] ring-4 ring-[#020617]" />
-                <div className="text-[11px] font-mono text-cyan-400/70 mb-1">
-                  {item.year}
-                </div>
-                <h4 className="text-lg font-semibold text-slate-50 mb-0.5">
-                  {item.title}
-                </h4>
-                <div className="text-sm text-indigo-300/80 mb-2">
-                  {item.org}
-                </div>
-                <p className="text-sm text-slate-400 leading-relaxed max-w-md">
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid gap-4">
+            {SKILLS.map((skill, i) => {
+              const Icon = skill.icon;
+              return (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: 0.15 + i * 0.08,
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1],
+                  }}
+                  className="group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400/10 to-indigo-500/10 border border-white/[0.06] flex items-center justify-center group-hover:from-cyan-400/20 group-hover:to-indigo-500/20 group-hover:border-cyan-400/20 transition-all duration-500">
+                      <Icon className="w-4 h-4 text-cyan-300/80 group-hover:text-cyan-200 transition-colors duration-500" />
+                    </div>
+                    <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors duration-500">
+                      {skill.name}
+                    </span>
+                    <span className="ml-auto text-[11px] font-mono text-slate-500 group-hover:text-cyan-400/70 transition-colors duration-500">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div className="relative h-1.5 rounded-full bg-white/[0.04] overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{
+                        delay: 0.3 + i * 0.08,
+                        duration: 1,
+                        ease: [0.23, 1, 0.32, 1],
+                      }}
+                      className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-cyan-400/60 via-indigo-400/50 to-cyan-400/60 group-hover:from-cyan-400/80 group-hover:via-indigo-400/70 group-hover:to-cyan-400/80 transition-all duration-500"
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
+
+          {/* Idiomas & Soft Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.7 }}
+            className="mt-12"
+          >
+            <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-4">
+              // EXTRAS
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* Idiomas */}
+              <div className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                <h4 className="text-xs font-mono tracking-wider text-cyan-300/70 mb-3 uppercase">
+                  Idiomas
+                </h4>
+                <div className="space-y-2.5">
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm text-slate-200">Português</span>
+                      <span className="text-[10px] font-mono text-cyan-400/60">
+                        Nativo
+                      </span>
+                    </div>
+                    <div className="h-1 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-cyan-400/60 to-indigo-400/50"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm text-slate-200">Inglês</span>
+                      <span className="text-[10px] font-mono text-cyan-400/60">
+                        Intermediário
+                      </span>
+                    </div>
+                    <div className="h-1 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-cyan-400/60 to-indigo-400/50"
+                        style={{ width: "50%" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Soft Skills */}
+              <div className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                <h4 className="text-xs font-mono tracking-wider text-cyan-300/70 mb-3 uppercase">
+                  Soft Skills
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Comunicação",
+                    "Criatividade",
+                    "Proatividade",
+                    "Trabalho em Equipe",
+                    "Resolução de Problemas",
+                    "Adaptabilidade",
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 text-[11px] font-mono text-slate-400 bg-white/[0.03] border border-white/[0.06] rounded-full hover:border-cyan-400/20 hover:text-cyan-300 transition-all duration-500"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
           <motion.button
             onClick={() => onNavigate("experience")}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-8 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors group"
+            className="mt-10 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors group"
           >
             Ver experiência completa
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -1,134 +1,82 @@
-import { useEffect, useRef } from "react";
+import { useMemo } from "react";
+import { motion } from "framer-motion";
 
-export default function ParticleField() {
-  const canvasRef = useRef(null);
-  const mouseRef = useRef({ x: -1000, y: -1000 });
+const PARTICLE_COUNT = 35;
+const COLORS = [
+  "rgba(59,130,246,", // blue-500
+  "rgba(96,165,250,", // blue-400
+  "rgba(147,197,253,", // blue-300
+  "rgba(34,211,238,", // cyan-400
+  "rgba(255,255,255,", // white
+];
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let animationId;
-    let particles = [];
-    let w = 0;
-    let h = 0;
+const TYPES = ["circle", "square", "diamond"];
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+function generateParticles(count) {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: 0.85 + Math.random() * 0.15, // start near right edge of logo
+    y: 0.1 + Math.random() * 0.8, // spread vertically
+    size: 1.5 + Math.random() * 2.5, // 1.5px to 4px
+    duration: 3 + Math.random() * 4, // 3s to 7s
+    delay: Math.random() * 6, // stagger start
+    driftY: -15 + Math.random() * 30, // vertical drift -15px to +15px
+    driftX: 20 + Math.random() * 40, // horizontal drift 20px to 60px
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    type: TYPES[Math.floor(Math.random() * TYPES.length)],
+    glow: 2 + Math.random() * 4, // glow radius 2px to 6px
+    opacityPeak: 0.4 + Math.random() * 0.6, // peak opacity 0.4 to 1.0
+  }));
+}
 
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
+function Particle({ particle, isHovered }) {
+  const speedMultiplier = isHovered ? 1.4 : 1;
+  const glowMultiplier = isHovered ? 1.5 : 1;
 
-    const createParticles = () => {
-      const count = prefersReducedMotion
-        ? 30
-        : Math.min(90, Math.floor(w / 18));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        size: Math.random() * 1.8 + 0.4,
-        opacity: Math.random() * 0.5 + 0.15,
-        hue: Math.random() > 0.5 ? "cyan" : "indigo",
-      }));
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
-
-        const dxm = p.x - mouseRef.current.x;
-        const dym = p.y - mouseRef.current.y;
-        const distM = Math.sqrt(dxm * dxm + dym * dym);
-        if (distM < 150) {
-          const force = (150 - distM) / 150;
-          p.x += (dxm / distM) * force * 0.8;
-          p.y += (dym / distM) * force * 0.8;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        const color =
-          p.hue === "cyan"
-            ? `rgba(34, 211, 238, ${p.opacity})`
-            : `rgba(99, 102, 241, ${p.opacity * 0.7})`;
-        ctx.fillStyle = color;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            const alpha = 0.12 * (1 - dist / 130);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animationId = requestAnimationFrame(draw);
-    };
-
-    const handleResize = () => {
-      resize();
-      createParticles();
-    };
-
-    const handleMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current = { x: -1000, y: -1000 };
-    };
-
-    resize();
-    createParticles();
-    draw();
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseout", handleMouseLeave);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseout", handleMouseLeave);
-    };
-  }, []);
+  const shapeClass =
+    particle.type === "circle"
+      ? "rounded-full"
+      : particle.type === "square"
+        ? "rounded-[1px]"
+        : "rotate-45 rounded-[1px]";
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 1 }}
-      aria-hidden="true"
+    <motion.div
+      className={`absolute ${shapeClass}`}
+      style={{
+        left: `${particle.x * 100}%`,
+        top: `${particle.y * 100}%`,
+        width: particle.size,
+        height: particle.size,
+        background: `${particle.color}${particle.opacityPeak})`,
+        boxShadow: `0 0 ${particle.glow * glowMultiplier}px ${particle.color}0.5)`,
+        filter: `drop-shadow(0 0 ${particle.glow * glowMultiplier}px ${particle.color}0.3))`,
+      }}
+      animate={{
+        x: [0, particle.driftX * speedMultiplier],
+        y: [0, particle.driftY * speedMultiplier],
+        opacity: [0, particle.opacityPeak, particle.opacityPeak * 0.7, 0],
+        scale: [0.8, 1, 0.6],
+      }}
+      transition={{
+        duration: particle.duration / speedMultiplier,
+        delay: particle.delay,
+        repeat: Infinity,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.8, 1],
+      }}
     />
+  );
+}
+
+export default function ParticleField({ isHovered }) {
+  const particles = useMemo(() => generateParticles(PARTICLE_COUNT), []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((p) => (
+        <Particle key={p.id} particle={p} isHovered={isHovered} />
+      ))}
+    </div>
   );
 }
