@@ -28,24 +28,27 @@ export default function FloatingNav({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       className={`
-        ${fixed ? "fixed top-5 left-1/2 -translate-x-1/2 z-50" : "w-full max-w-4xl mx-auto"}
+        ${fixed ? "fixed bottom-0 left-0 right-0 md:top-5 md:left-1/2 md:-translate-x-1/2 md:bottom-auto z-50" : "w-full max-w-4xl mx-auto"}
         flex items-center ${showLogo ? "justify-between" : "justify-center"}
       `}
       aria-label="Primary navigation"
     >
       {/* Logo - apenas na Home */}
       {showLogo && (
-        <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="cursor-pointer hidden md:block"
+        >
           <img
             src={logoImg}
             alt="Gustavo Leão"
-            className="h-8 md:h-40 w-auto object-contain"
+            className="h-8 md:h-12 w-auto object-contain"
           />
         </motion.div>
       )}
 
       {/* Menu de Navegação */}
-      <div className="flex items-center gap-0.5 px-2 py-2 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-2xl shadow-black/40">
+      <div className="flex items-center gap-0.5 px-1 md:px-2 py-1 md:py-2 rounded-none md:rounded-2xl border-t md:border border-white/10 bg-[#020617]/95 md:bg-white/[0.04] backdrop-blur-2xl shadow-2xl shadow-black/40 w-full md:w-auto justify-center">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = activePage === item.id;
@@ -53,7 +56,7 @@ export default function FloatingNav({
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className="relative px-3 md:px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-300 group focus:outline-none"
+              className="relative flex-1 md:flex-none px-2 md:px-4 py-3 md:py-2 rounded-xl text-sm font-medium transition-colors duration-300 group focus:outline-none"
               aria-current={isActive ? "page" : undefined}
               aria-label={item.label}
             >
@@ -65,14 +68,16 @@ export default function FloatingNav({
                 />
               )}
               <span
-                className={`relative z-10 flex items-center gap-2 transition-colors duration-300 ${
+                className={`relative z-10 flex flex-col md:flex-row items-center gap-0.5 md:gap-2 transition-colors duration-300 ${
                   isActive
                     ? "text-cyan-300"
-                    : "text-slate-400 group-hover:text-slate-100"
+                    : "text-slate-500 group-hover:text-slate-100"
                 }`}
               >
-                <Icon className="w-4 h-4" />
-                <span className="hidden md:inline">{item.label}</span>
+                <Icon className="w-5 h-5 md:w-4 md:h-4" />
+                <span className="text-[10px] md:text-sm leading-tight md:inline">
+                  {item.label}
+                </span>
               </span>
             </button>
           );

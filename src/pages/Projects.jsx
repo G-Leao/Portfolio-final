@@ -90,20 +90,20 @@ export default function Projects({ onNavigate }) {
             <div className="shrink-0 w-1" />
           </div>
 
-          {/* Arrows */}
+          {/* Arrows - always visible on mobile, hover on desktop */}
           <button
             onClick={() => scroll(-1)}
             aria-label="Projetos anteriores"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-6 w-11 h-11 rounded-full border border-white/10 bg-[#020617]/80 backdrop-blur-xl flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 opacity-0 group-hover/carousel:opacity-100"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-6 w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/10 bg-[#020617]/90 md:bg-[#020617]/80 backdrop-blur-xl flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 z-10"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             onClick={() => scroll(1)}
             aria-label="Próximos projetos"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-6 w-11 h-11 rounded-full border border-white/10 bg-[#020617]/80 backdrop-blur-xl flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 opacity-0 group-hover/carousel:opacity-100"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-6 w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/10 bg-[#020617]/90 md:bg-[#020617]/80 backdrop-blur-xl flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 z-10"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
 

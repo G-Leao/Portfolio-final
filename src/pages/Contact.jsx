@@ -45,7 +45,7 @@ export default function Contact({ onNavigate }) {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24">
+    <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 pb-28 md:pb-24">
       {/* Logo no canto superior esquerdo */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -56,7 +56,7 @@ export default function Contact({ onNavigate }) {
         <img
           src={logoImg}
           alt="Gustavo Leão"
-          className="h-8 md:h-40 w-auto object-contain"
+          className="h-6 md:h-10 w-auto object-contain"
         />
       </motion.div>
 

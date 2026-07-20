@@ -207,7 +207,7 @@ export default function Experience({ onNavigate }) {
                 <img
                   src={logoImg}
                   alt="Gustavo Leão"
-                  className="h-10 md:h-60 w-auto object-contain"
+                  className="h-8 md:h-20 w-auto object-contain"
                   style={{
                     filter:
                       "drop-shadow(0 0 25px rgba(59,130,246,0.30)) drop-shadow(0 0 60px rgba(59,130,246,0.15))",

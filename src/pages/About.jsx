@@ -62,7 +62,7 @@ export default function About({ onNavigate }) {
         <img
           src={logoImg}
           alt="Gustavo Leão"
-          className="h-8 md:h-40 w-auto object-contain"
+          className="h-6 md:h-10 w-auto object-contain"
         />
       </motion.div>
 

@@ -50,25 +50,23 @@ function Experience() {
 
       {!loading && (
         <>
-          {activePage !== "home" && (
-            <FloatingNav
-              activePage={activePage}
-              onNavigate={handleNavigate}
-              showLogo={activePage === "projects"}
-            />
-          )}
-          <div className="relative" style={{ zIndex: 2 }}>
+          <FloatingNav
+            activePage={activePage}
+            onNavigate={handleNavigate}
+            showLogo={activePage === "projects"}
+          />
+          <div className="relative pb-16 md:pb-0" style={{ zIndex: 2 }}>
             <CubeStage activePage={activePage} onNavigate={handleNavigate} />
           </div>
 
-          {/* Corner brand mark */}
-          <div className="fixed bottom-5 left-6 z-40 pointer-events-none">
+          {/* Corner brand mark - hidden on mobile to avoid nav overlap */}
+          <div className="fixed bottom-20 md:bottom-5 left-4 md:left-6 z-40 pointer-events-none">
             <div className="text-[10px] font-mono tracking-[0.3em] text-slate-600">
               Gustavo Leão © 2026
             </div>
           </div>
           {/* Corner status */}
-          <div className="fixed bottom-5 right-6 z-40 pointer-events-none hidden md:block">
+          <div className="fixed bottom-20 md:bottom-5 right-4 md:right-6 z-40 pointer-events-none hidden md:block">
             <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.2em] text-slate-600">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400/60 animate-pulse-glow" />
               SYSTEM ONLINE

@@ -1,7 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const PARTICLE_COUNT = 35;
 const COLORS = [
   "rgba(59,130,246,", // blue-500
   "rgba(96,165,250,", // blue-400
@@ -15,17 +14,17 @@ const TYPES = ["circle", "square", "diamond"];
 function generateParticles(count) {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
-    x: 0.85 + Math.random() * 0.15, // start near right edge of logo
-    y: 0.1 + Math.random() * 0.8, // spread vertically
-    size: 1.5 + Math.random() * 2.5, // 1.5px to 4px
-    duration: 3 + Math.random() * 4, // 3s to 7s
-    delay: Math.random() * 6, // stagger start
-    driftY: -15 + Math.random() * 30, // vertical drift -15px to +15px
-    driftX: 20 + Math.random() * 40, // horizontal drift 20px to 60px
+    x: 0.85 + Math.random() * 0.15,
+    y: 0.1 + Math.random() * 0.8,
+    size: 1.5 + Math.random() * 2.5,
+    duration: 3 + Math.random() * 4,
+    delay: Math.random() * 6,
+    driftY: -15 + Math.random() * 30,
+    driftX: 20 + Math.random() * 40,
     color: COLORS[Math.floor(Math.random() * COLORS.length)],
     type: TYPES[Math.floor(Math.random() * TYPES.length)],
-    glow: 2 + Math.random() * 4, // glow radius 2px to 6px
-    opacityPeak: 0.4 + Math.random() * 0.6, // peak opacity 0.4 to 1.0
+    glow: 2 + Math.random() * 4,
+    opacityPeak: 0.4 + Math.random() * 0.6,
   }));
 }
 
@@ -70,7 +69,33 @@ function Particle({ particle, isHovered }) {
 }
 
 export default function ParticleField({ isHovered }) {
-  const particles = useMemo(() => generateParticles(PARTICLE_COUNT), []);
+  const [isMobile, setIsMobile] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      mq.removeEventListener("change", handler);
+    };
+  }, []);
+
+  // Reduced particles on mobile, none if reduced motion
+  const particleCount = reducedMotion ? 0 : isMobile ? 12 : 35;
+  const particles = useMemo(
+    () => generateParticles(particleCount),
+    [particleCount],
+  );
+
+  if (particleCount === 0) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
