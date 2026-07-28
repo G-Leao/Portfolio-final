@@ -2,6 +2,12 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
+import WatchHub from "../assets/img/WATCHHUB.png";
+import Port from "../assets/img/Portfolio.png";
+import Gestao from "../assets/img/siSTEMAGESTAO.png";
+import Ar from "../assets/img/aresportes.png";
+import Cadastro from "../assets/img/cadastro.png";
+import login from "../assets/img/login.png";
 
 const PROJECTS = [
   {
@@ -10,9 +16,9 @@ const PROJECTS = [
     description:
       "Meu portfólio desenvolvido em React com foco em performance, design moderno e experiência do usuário.",
     tech: ["React", "Vite", "CSS", "JavaScript"],
-    image: "",
-    github: "https://github.com/G-Leao",
-    live: "https://gustavoleao.dev",
+    image: Port,
+    github: "https://github.com/G-Leao/Portfolio-final",
+    live: "https://gustavol.vercel.app/",
   },
   {
     title: "Sistema de Gestão de Vendas",
@@ -20,9 +26,28 @@ const PROJECTS = [
     description:
       "Sistema desenvolvido para gerenciamento de vendas, clientes e fluxo comercial.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image: "",
-    github: "https://github.com/G-Leao",
-    live: "#",
+    image: Gestao,
+    github: "https://github.com/G-Leao/Sistema-de-gestao-de-vendas",
+    live: "https://sistema-de-gestao-de-vendas-black.vercel.app/",
+  },
+  {
+    title: "Watch Hub",
+    category: "Web App",
+    description:
+      "Aplicação para cadastro, gerenciamento e Comparação de Relógios.",
+    tech: ["React", "Vite", " Css", "JavaScript"],
+    image: WatchHub,
+    github: "https://github.com/G-Leao/watch-hub",
+    live: "https://watch-hub-nine.vercel.app/",
+  },
+  {
+    title: "AR Esportes",
+    category: "Web App",
+    description: "Aplicação Institucional Para academia de judô",
+    tech: ["HTML", "CSS", "JavaScript"],
+    image: Ar,
+    github: "https://github.com/G-Leao/ar-esportes-landing-page",
+    live: "https://ar-hazel-tau.vercel.app/",
   },
   {
     title: "Sistema de Cadastro",
@@ -30,9 +55,9 @@ const PROJECTS = [
     description:
       "Aplicação para cadastro e gerenciamento de usuários utilizando JavaScript.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image: "",
-    github: "https://github.com/G-Leao",
-    live: "#",
+    image: Cadastro,
+    github: "https://github.com/G-Leao/pagina-de-cadastro",
+    live: "https://pagina-de-cadastro-nu.vercel.app/",
   },
   {
     title: "Interface de Login",
@@ -40,9 +65,9 @@ const PROJECTS = [
     description:
       "Tela de autenticação moderna com design responsivo e experiência do usuário otimizada.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image: "",
-    github: "https://github.com/G-Leao",
-    live: "#",
+    image: login,
+    github: "https://github.com/G-Leao/login",
+    live: "https://login-page-eight-blush.vercel.app/",
   },
 ];
 
