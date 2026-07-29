@@ -119,6 +119,16 @@
   .animate-logo-shine {
     animation: logo-shine 9s ease-in-out infinite;
   }
+  .typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    animation:
+      typewriter 4s steps(20) infinite,
+      blink-caret 0.75s step-end infinite;
+    border-right: 1px solid rgba(71, 85, 105, 0.6);
+    padding-right: 2px;
+  }
 }
 
 @keyframes pulse-slow {
@@ -251,6 +261,28 @@
   }
   100% {
     transform: translateX(300%) skewX(-12deg);
+  }
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  0%,
+  100% {
+    border-color: rgba(71, 85, 105, 0.6);
+  }
+  50% {
+    border-color: transparent;
   }
 }
 

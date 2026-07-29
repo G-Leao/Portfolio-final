@@ -62,7 +62,7 @@ function Experience() {
           {/* Corner brand mark - hidden on mobile to avoid nav overlap */}
           <div className="fixed bottom-20 md:bottom-5 left-4 md:left-6 z-40 pointer-events-none">
             <div className="text-[10px] font-mono tracking-[0.3em] text-slate-600">
-              Gustavo Leão © 2026
+              <span className="typewriter-text">Gustavo Leão © 2026</span>
             </div>
           </div>
           {/* Corner status */}

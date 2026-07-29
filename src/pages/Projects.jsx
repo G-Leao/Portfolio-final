@@ -32,7 +32,7 @@ const PROJECTS = [
   },
   {
     title: "Watch Hub",
-    category: "Web App",
+    category: "Web App React",
     description:
       "Aplicação para cadastro, gerenciamento e Comparação de Relógios.",
     tech: ["React", "Vite", " Css", "JavaScript"],

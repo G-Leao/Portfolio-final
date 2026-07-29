@@ -29,7 +29,7 @@ export default function FloatingNav({
       transition={{ delay: 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       className={`
         ${fixed ? "fixed bottom-0 left-0 right-0 md:top-5 md:left-1/2 md:-translate-x-1/2 md:bottom-auto z-50" : "w-full max-w-4xl mx-auto"}
-        flex items-center ${showLogo ? "justify-between" : "justify-center"}
+        flex items-center justify-center
       `}
       aria-label="Primary navigation"
     >
@@ -37,7 +37,7 @@ export default function FloatingNav({
       {showLogo && (
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="cursor-pointer hidden md:block"
+          className="cursor-pointer hidden md:block absolute left-4 top-1/2 -translate-y-1/2"
         >
           <img
             src={logoImg}
