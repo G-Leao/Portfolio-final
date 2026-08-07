@@ -39,7 +39,7 @@ export default function Contact({ onNavigate }) {
     if (!isReady) return;
     const subject = encodeURIComponent(`Contato: ${role}`);
     const body = encodeURIComponent(`Projeto: ${project}\n\n${message}`);
-    window.location.href = `mailto:gustavoleao.dev@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:dev.g.leao@gmail.com.com?subject=${subject}&body=${body}`;
     setSent(true);
     setTimeout(() => setSent(false), 3000);
   };
