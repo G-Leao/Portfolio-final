@@ -133,7 +133,7 @@ export default function Home({ onNavigate, activePage }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.3, duration: 1 }}
-        className="absolute bottom-40 md:bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-mono tracking-[0.25em] text-slate-500 hover:text-cyan-300 transition-colors duration-300 flex flex-col items-center gap-2"
+        className="absolute bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-mono tracking-[0.25em] text-slate-500 hover:text-cyan-300 transition-colors duration-300 flex flex-col items-center gap-2"
       >
         SAIBA MAIS
         <span className="w-px h-8 bg-gradient-to-b from-cyan-400/50 to-transparent animate-pulse-glow" />
