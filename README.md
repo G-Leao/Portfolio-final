@@ -7,7 +7,7 @@ Gustavo Leão — Portfolio
 </p><p align="center">
   <a href="https://gustavol.vercel.app/">Portfolio</a> •
   <a href="https://github.com/G-Leao">GitHub</a> •
-  <a href="https://www.linkedin.com/">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/gustavo-leaodev">LinkedIn</a>
 </p>
 
 
