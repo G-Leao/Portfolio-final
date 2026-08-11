@@ -8,7 +8,8 @@ Gustavo Leão — Portfolio
   <a href="https://gustavol.vercel.app/">Portfolio</a> •
   <a href="https://github.com/G-Leao">GitHub</a> •
   <a href="https://www.linkedin.com/">LinkedIn</a>
-</p>---
+</p>
+
 
 👨‍💻 About Me
 
@@ -18,7 +19,7 @@ My main focus is developing clean, responsive and intuitive interfaces while lea
 
 I'm currently looking for opportunities where I can learn, contribute and grow as a Software Developer, especially in internships and junior positions.
 
----
+
 
 🚀 Tech Stack
 
@@ -51,7 +52,7 @@ Currently Learning
 - Software Architecture
 - Backend Development
 
----
+
 
 💼 Featured Projects
 
@@ -65,7 +66,7 @@ Technologies: HTML, CSS, JavaScript
 
 🔗 "Live Website" (https://gustavol.vercel.app/)
 
----
+
 
 💰 MoneyMind AI
 
@@ -73,7 +74,7 @@ A financial management SaaS concept focused on helping users organize their fina
 
 Technologies: React, TypeScript, Tailwind CSS, Node.js, Supabase
 
----
+
 
 📊 Sales Management System
 
@@ -81,7 +82,7 @@ A web application designed to manage sales and business-related information thro
 
 Technologies: HTML, CSS, JavaScript
 
----
+
 
 🔐 Authentication System
 
@@ -97,7 +98,7 @@ Features include:
 
 Technologies: React, TypeScript, Node.js
 
----
+
 
 🎯 Career Goals
 
@@ -112,7 +113,7 @@ I'm currently focused on becoming a stronger Software Engineer, with a particula
 
 My goal is to work with talented teams, contribute to real-world products and continuously improve through practical experience.
 
----
+
 
 📚 Education
 
@@ -133,7 +134,6 @@ Throughout my studies, I've worked with:
 - Java
 - Software Engineering
 
----
 
 🌎 Open to Opportunities
 
@@ -148,7 +148,7 @@ I'm currently open to:
 
 If you're looking for a motivated developer who enjoys learning and building things, feel free to reach out.
 
----
+
 
 📫 Let's Connect
 
@@ -166,7 +166,7 @@ If you're looking for a motivated developer who enjoys learning and building thi
 - Facilitar o contato de recrutadores e empresas;
 - Servir como portfólio profissional.
 
----
+
 
 ## Próximas melhorias
 
@@ -178,7 +178,7 @@ If you're looking for a motivated developer who enjoys learning and building thi
 - [ ] Melhorias de acessibilidade (A11Y)
 - [ ] Otimizações de desempenho
 
----
+
 
 ## Autor
 
@@ -192,7 +192,6 @@ Estudante de Engenharia de Software e Desenvolvedor Front-end.
 
 **LinkedIn:** https://www.linkedin.com/in/gustavo-leao
 
----
 
 ## Licença
 
@@ -200,6 +199,6 @@ Este projeto está licenciado sob a licença MIT.
 
 Sinta-se à vontade para utilizá-lo como inspiração em seus estudos, respeitando os devidos créditos ao autor.
 
----
+
 
 Se este projeto foi útil para você, considere deixar uma estrela no repositório.
