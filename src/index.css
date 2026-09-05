@@ -324,3 +324,70 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================================
+   OTIMIZAÇÕES DE PERFORMANCE
+   ===================================================================== */
+
+/* Forçar aceleração de hardware nas animações principais */
+.preserve-3d,
+.backface-hidden {
+  will-change: transform;
+}
+
+/* Blobs de fundo: animation-play-state: paused quando fora da viewport via JS.
+   Em mobile reduz blur para economizar fill-rate */
+@media (max-width: 767px) {
+  /* Menos blur em mobile — economiza fill rate da GPU significativamente */
+  [class*="blur-[120px]"],
+  [class*="blur-[100px]"] {
+    filter: blur(60px);
+  }
+
+  /* backdrop-blur mais leve em mobile */
+  .backdrop-blur-2xl {
+    --tw-backdrop-blur: blur(12px);
+  }
+  .backdrop-blur-xl {
+    --tw-backdrop-blur: blur(8px);
+  }
+  .backdrop-blur-md {
+    --tw-backdrop-blur: blur(6px);
+  }
+
+  /* Desabilita parallax pesado em mobile — CSS é mais rápido que JS aqui */
+  [data-active] * {
+    --parallax-disabled: 1;
+  }
+}
+
+/* Reduced motion: garante que qualquer animação CSS customizada também pare */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-logo-halo,
+  .animate-logo-aura,
+  .animate-particle-1,
+  .animate-particle-2,
+  .animate-particle-3,
+  .animate-particle-4,
+  .animate-particle-5,
+  .animate-logo-shine,
+  .typewriter-text {
+    animation: none !important;
+  }
+
+  /* Mantém o pulse do indicador de status, mas mais sutil */
+  .animate-pulse {
+    animation-duration: 3s !important;
+  }
+}
+
+/* Containment — ajuda o browser a isolar repaint/layout por seção */
+section {
+  contain: layout style;
+}
+
+/* Elementos fixos: promover à própria layer de compositing */
+.fixed {
+  isolation: isolate;
+}
