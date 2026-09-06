@@ -1,187 +1,211 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
-  Briefcase,
-  GraduationCap,
   ArrowRight,
   Sparkles,
-  BookOpen,
+  GitCommit,
+  GitMerge,
+  GitBranch,
+  Plus,
+  ChevronDown,
+  Award,
 } from "lucide-react";
 import logoImg from "@/assets/img/logoGustavo.png";
 import ParticleField from "@/components/ParticleField";
 
-const ROLES = [
-  {
-    period: "2025 — Presente",
-    role: "Consultor de Vendas",
-    company: "Gravina Jóias e Relógios",
-    desc: "Atendimento ao cliente, organização, negociação e desenvolvimento de habilidades interpessoais essenciais.",
-    achievements: [
-      "Atendimento ao cliente",
-      "Organização e gestão",
-      "Negociação",
-      "Relacionamento com clientes",
-      "Trabalho em equipe",
-      "Resolução de problemas",
-    ],
-  },
-];
+// gera um hash curto tipo git a partir do texto (determinístico)
+function shortHash(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (h << 5) - h + str.charCodeAt(i);
+    h |= 0;
+  }
+  return Math.abs(h).toString(16).slice(0, 7).padEnd(7, "0");
+}
 
-const EDUCATION = [
-  {
-    period: "2025 — Presente",
-    role: "Engenharia de Software",
-    company: "Universidade",
-    desc: "Em andamento. Foco em desenvolvimento web, programação, boas práticas e engenharia de software.",
-    highlight: true,
-  },
-  {
-    period: "2024 - Fim do ensino médio",
-    role: "Ensino Médio",
-    company: "Escola",
-    desc: "Início na programação e fundamentos de lógica.",
-  },
-  {
-    period: "2023 - Ensino médio",
-    role: "Programação",
-    company: "Escola",
-    desc: "Início dos estudos em desenvolvimento web.",
-  },
-  {
-    period: "2022 - Conhecendo a Tecnologia",
-    role: "Escola",
-    company: "Escola",
-    desc: "Conhecendo o HTML e o CSS",
-  },
-];
+function CommitNode({ item, index, branchColor, isLast, defaultOpen }) {
+  const [open, setOpen] = useState(!!defaultOpen);
+  const hash = shortHash(item.role + item.period);
 
-function TimelineEntry({ item, index, icon: Icon }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 24 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        delay: 0.15 + index * 0.12,
-        duration: 0.7,
-        ease: [0.23, 1, 0.32, 1],
-      }}
-      className="relative mb-10 last:mb-0"
+      initial={{ opacity: 0, x: 16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ delay: index * 0.08, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+      className="relative"
     >
-      <div className="absolute -left-[37px] top-1.5 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.7)] ring-4 ring-[#020617]" />
-      <div className="text-[11px] font-mono text-cyan-400/70 mb-1">
-        {item.period}
-      </div>
-      <div className="flex items-center gap-2 mb-1">
-        <Icon className="w-4 h-4 text-indigo-300/70" />
-        <h4 className="text-lg font-semibold text-slate-50">{item.role}</h4>
-      </div>
-      <div className="text-sm text-indigo-300/80 mb-2">{item.company}</div>
-      <p className="text-sm text-slate-400 leading-relaxed mb-3 max-w-lg">
-        {item.desc}
-      </p>
-      {item.achievements && (
-        <ul className="space-y-1.5">
-          {item.achievements.map((a) => (
-            <li
-              key={a}
-              className="flex items-start gap-2 text-xs text-slate-400"
-            >
-              <span className="mt-1.5 w-1 h-1 rounded-full bg-cyan-400/60 shrink-0" />
-              {a}
-            </li>
-          ))}
-        </ul>
+      {/* linha conectando ao próximo commit */}
+      {!isLast && (
+        <div
+          className="absolute left-[7px] top-5 w-px bg-white/10"
+          style={{ height: "calc(100% + 8px)" }}
+        />
       )}
+
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="group relative flex w-full items-start gap-3 py-2 text-left"
+      >
+        {/* nó do commit */}
+        <span
+          className="relative mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full ring-4 ring-[#020617] transition-all duration-300 group-hover:scale-125"
+          style={{
+            background: branchColor,
+            boxShadow: `0 0 10px ${branchColor}`,
+          }}
+        />
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-[11px] text-slate-500">{hash}</span>
+            <span className="text-sm font-semibold text-slate-100 group-hover:text-cyan-200 transition-colors">
+              {item.role}
+            </span>
+            {item.highlight && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-cyan-300">
+                <Sparkles className="w-2.5 h-2.5" />
+                HEAD
+              </span>
+            )}
+          </div>
+          <div className="mt-0.5 flex items-center gap-2 text-[11px] font-mono text-slate-500">
+            <span>{item.company}</span>
+            <span className="text-slate-700">·</span>
+            <span>{item.period}</span>
+          </div>
+        </div>
+
+        <ChevronDown
+          className={`mt-1.5 w-3.5 h-3.5 text-slate-600 transition-transform duration-300 shrink-0 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+
+      {/* diff expandido */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+            className="overflow-hidden pl-[26px]"
+          >
+            <div className="mb-3 rounded-lg border border-white/5 bg-black/30 p-3 font-mono text-[12px] leading-relaxed">
+              <div className="mb-2 text-slate-500"># {item.desc}</div>
+              {item.achievements?.map((a) => (
+                <div key={a} className="flex items-start gap-1.5 text-emerald-400/80">
+                  <Plus className="w-3 h-3 mt-0.5 shrink-0" />
+                  <span className="text-slate-300">{a}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
 
-function EducationEntry({ item, index }) {
+function BranchLog({ title, items, branchColor, branchLabel }) {
+  return (
+    <div className="relative">
+      <div className="mb-5 flex items-center gap-2">
+        <GitBranch className="w-3.5 h-3.5" style={{ color: branchColor }} />
+        <h3 className="text-sm font-mono tracking-[0.15em] text-slate-300 uppercase">{title}</h3>
+        <span
+          className="ml-auto rounded-md border px-2 py-0.5 font-mono text-[10px]"
+          style={{ borderColor: `${branchColor}33`, color: branchColor }}
+        >
+          {branchLabel}
+        </span>
+      </div>
+      <div className="space-y-0">
+        {items.map((item, i) => (
+          <CommitNode
+            key={item.period + item.role}
+            item={item}
+            index={i}
+            branchColor={branchColor}
+            isLast={i === items.length - 1}
+            defaultOpen={i === 0}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CertificationTags({ items, t }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        delay: 0.15 + index * 0.15,
-        duration: 0.7,
-        ease: [0.23, 1, 0.32, 1],
-      }}
-      className="relative mb-6 last:mb-0 group"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+      className="border-t border-white/5 px-6 md:px-8 py-6"
     >
-      {/* Timeline dot with glow */}
-      <div className="absolute -left-[37px] top-6 w-3 h-3 rounded-full bg-gradient-to-br from-cyan-300 to-indigo-500 shadow-[0_0_16px_rgba(34,211,238,0.8)] ring-4 ring-[#020617] z-10 group-hover:shadow-[0_0_24px_rgba(34,211,238,1)] group-hover:scale-110 transition-all duration-500" />
-
-      {/* Card with border */}
-      <div className="relative ml-0 rounded-xl border border-white/[0.06] px-4 md:px-5 py-4 md:py-5 transition-all duration-500 group-hover:border-cyan-400/30 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.08)]">
-        {/* Top row: period + badge */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-[11px] font-mono text-cyan-400/60 group-hover:text-cyan-300/80 transition-colors duration-500">
-            {item.period}
-          </div>
-          {item.highlight && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wider uppercase rounded-full bg-gradient-to-r from-cyan-400/15 to-indigo-500/15 border border-cyan-400/20 text-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.15)]">
-              <Sparkles className="w-2.5 h-2.5" />
-              Atual
-            </span>
-          )}
-        </div>
-
-        {/* Role + Icon */}
-        <div className="flex items-center gap-2.5 mb-1.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400/10 to-indigo-500/10 border border-white/[0.06] flex items-center justify-center group-hover:from-cyan-400/20 group-hover:to-indigo-500/20 group-hover:border-cyan-400/20 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]">
-            <GraduationCap className="w-4 h-4 text-cyan-300/80 group-hover:text-cyan-200 transition-colors duration-500" />
-          </div>
-          <h4 className="text-base md:text-lg font-semibold text-slate-50 group-hover:text-white transition-colors duration-500">
-            {item.role}
-          </h4>
-        </div>
-
-        {/* Company */}
-        <div className="flex items-center gap-1.5 mb-2 ml-[42px]">
-          <BookOpen className="w-3 h-3 text-indigo-400/60" />
-          <span className="text-xs text-indigo-300/70 group-hover:text-indigo-200/90 transition-colors duration-500">
-            {item.company}
+      <div className="mb-4 flex items-center gap-2">
+        <Award className="w-3.5 h-3.5 text-indigo-300" />
+        <h3 className="text-sm font-mono tracking-[0.15em] text-slate-300 uppercase">
+          {t("experience.certifications")}
+        </h3>
+        <span className="ml-auto rounded-md border border-indigo-400/20 px-2 py-0.5 font-mono text-[10px] text-indigo-300">
+          tags --list
+        </span>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {items.map((cert) => (
+          <span
+            key={cert}
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-[11px] font-mono text-slate-400 hover:border-indigo-400/30 hover:text-indigo-200 transition-colors duration-300"
+          >
+            <span className="text-indigo-400/70">v</span>
+            {cert}
           </span>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-slate-400 leading-relaxed ml-[42px] group-hover:text-slate-300 transition-colors duration-500">
-          {item.desc}
-        </p>
+        ))}
       </div>
     </motion.div>
   );
 }
 
 export default function Experience({ onNavigate }) {
+  const { t } = useTranslation();
   const [isLogoHovered, setIsLogoHovered] = useState(false);
+
+  const ROLES = [t("experience.roles.salesConsultant", { returnObjects: true })];
+  const EDUCATION = [
+    t("experience.education.softwareEngineering", { returnObjects: true }),
+    t("experience.education.itProjectManagement", { returnObjects: true }),
+    t("experience.education.complementary", { returnObjects: true }),
+  ];
+  const CERTIFICATIONS = t("experience.certificationsList", { returnObjects: true });
 
   return (
     <section className="relative w-full min-h-screen py-24 md:py-28 px-6 md:px-10 lg:px-16">
       {/* Two-column Hero */}
       <div className="max-w-5xl mx-auto mb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left: Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
             <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-3">
-              //EXPERIÊNCIA
+              {t("experience.sectionLabel")}
             </div>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
-              A <span className="text-gradient">Trajetória</span>
+              {t("experience.titleStart")}{" "}
+              <span className="text-gradient">{t("experience.titleHighlight")}</span>
             </h2>
             <p className="text-slate-400 leading-relaxed max-w-md text-[15px]">
-              Cada etapa da minha carreira tem sido uma oportunidade de
-              aprendizado e crescimento. Da descoberta da programação à
-              construção de interfaces modernas, minha trajetória reflete
-              dedicação e evolução constante.
+              {t("experience.description")}
             </p>
           </motion.div>
 
-          {/* Right: Logo flutuante premium */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -193,16 +217,9 @@ export default function Experience({ onNavigate }) {
               onMouseEnter={() => setIsLogoHovered(true)}
               onMouseLeave={() => setIsLogoHovered(false)}
             >
-              {/* Halo azul */}
               <div className="absolute -inset-6 rounded-full bg-blue-400/20 blur-3xl" />
-
-              {/* Brilho suave interno */}
               <div className="absolute -inset-3 rounded-full bg-blue-500/10 blur-2xl" />
-
-              {/* Partículas dinâmicas */}
               <ParticleField isHovered={isLogoHovered} />
-
-              {/* Logo */}
               <div className="relative">
                 <img
                   src={logoImg}
@@ -219,57 +236,59 @@ export default function Experience({ onNavigate }) {
         </div>
       </div>
 
+      {/* Git log terminal */}
       <div className="max-w-5xl mx-auto">
-        {/* Professional Experience */}
-        <div className="mb-16">
-          <div className="flex items-center gap-2 mb-8">
-            <Briefcase className="w-4 h-4 text-cyan-300" />
-            <h3 className="text-sm font-mono tracking-[0.2em] text-slate-300 uppercase">
-              Profissional
-            </h3>
+        <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden">
+          <div className="flex items-center gap-1.5 px-6 md:px-8 py-4 border-b border-white/5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400/40" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/40" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400/40" />
+            <span className="ml-3 flex items-center gap-1.5 text-[11px] font-mono text-slate-500">
+              <GitCommit className="w-3 h-3" /> git log --graph --all
+            </span>
           </div>
-          <div className="relative pl-8">
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400/50 via-indigo-500/30 to-transparent" />
-            {ROLES.map((r, i) => (
-              <TimelineEntry
-                key={r.period}
-                item={r}
-                index={i}
-                icon={Briefcase}
-              />
-            ))}
+
+          <div className="grid md:grid-cols-2 gap-10 px-6 md:px-8 py-8">
+            <BranchLog
+              title={t("experience.branchProfessional")}
+              items={ROLES}
+              branchColor="#22d3ee"
+              branchLabel="career"
+            />
+            <BranchLog
+              title={t("experience.branchEducation")}
+              items={EDUCATION}
+              branchColor="#818cf8"
+              branchLabel="academic"
+            />
           </div>
+
+          <CertificationTags items={CERTIFICATIONS} t={t} />
+
+          {/* Merge commit */}
+          <motion.button
+            onClick={() => onNavigate("contact")}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="group flex w-full items-center gap-3 border-t border-white/5 bg-white/[0.02] px-6 md:px-8 py-5 text-left transition-colors hover:bg-white/[0.04]"
+          >
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400/20 to-indigo-500/20 border border-white/10">
+              <GitMerge className="h-4 w-4 text-cyan-300" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="font-mono text-[11px] text-slate-500">
+                merge <span className="text-cyan-400">career</span> +{" "}
+                <span className="text-indigo-400">academic</span> → main
+              </div>
+              <div className="text-sm font-semibold text-slate-100 group-hover:text-cyan-200 transition-colors">
+                {t("experience.mergeText")}
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-cyan-300 shrink-0 transition-transform group-hover:translate-x-1" />
+          </motion.button>
         </div>
-
-        {/* Education */}
-        <div className="relative mb-16">
-          {/* Glow suave de fundo */}
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan-400/[0.04] via-indigo-500/[0.06] to-transparent blur-2xl pointer-events-none" />
-
-          <div className="flex items-center gap-2 mb-8">
-            <GraduationCap className="w-4 h-4 text-cyan-300" />
-            <h3 className="text-sm font-mono tracking-[0.2em] text-slate-300 uppercase">
-              Formação
-            </h3>
-          </div>
-          <div className="relative pl-8">
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400/50 via-indigo-500/30 to-transparent" />
-            {EDUCATION.map((e, i) => (
-              <EducationEntry key={e.period} item={e} index={i} />
-            ))}
-          </div>
-        </div>
-
-        <motion.button
-          onClick={() => onNavigate("contact")}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-12 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors group"
-        >
-          Vamos construir algo
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </motion.button>
       </div>
     </section>
   );

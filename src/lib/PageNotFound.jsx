@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { auth } from "@/api/authClient";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 export default function PageNotFound({}) {
   const location = useLocation();
   const pageName = location.pathname.substring(1);
+  const { t } = useTranslation();
 
   const { data: authData, isFetched } = useQuery({
     queryKey: ["user"],
@@ -31,12 +33,12 @@ export default function PageNotFound({}) {
           {/* Main Message */}
           <div className="space-y-3">
             <h2 className="text-2xl font-medium text-slate-800">
-              Página Não Encontrada
+              {t("notFound.title")}
             </h2>
             <p className="text-slate-600 leading-relaxed">
-              A página{" "}
+              {t("notFound.messageStart")}{" "}
               <span className="font-medium text-slate-700">"{pageName}"</span>{" "}
-              não pôde ser encontrada nesta aplicação.
+              {t("notFound.messageEnd")}
             </p>
           </div>
 
@@ -51,11 +53,10 @@ export default function PageNotFound({}) {
                   </div>
                   <div className="text-left space-y-1">
                     <p className="text-sm font-medium text-slate-700">
-                      Nota do Administrador
+                      {t("notFound.adminNote")}
                     </p>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                      Isso pode significar que a IA ainda não implementou esta
-                      página. Peça para implementá-la no chat.
+                      {t("notFound.adminContent")}
                     </p>
                   </div>
                 </div>
@@ -81,7 +82,7 @@ export default function PageNotFound({}) {
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                 />
               </svg>
-              Voltar ao Início
+              {t("notFound.backHome")}
             </button>
           </div>
         </div>

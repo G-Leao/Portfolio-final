@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Loader() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#020617]"
@@ -14,7 +17,7 @@ export default function Loader() {
         className="text-center px-6"
       >
         <div className="text-[10px] md:text-xs font-mono tracking-[0.35em] text-cyan-400/70 mb-8">
-          CARREGANDO&nbsp;PORTFÓLIO
+          {t("loader.loading")}
         </div>
 
         <div className="relative w-48 md:w-64 h-px bg-white/10 overflow-hidden mx-auto rounded-full">
@@ -43,7 +46,7 @@ export default function Loader() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
         >
-          DESENVOLVEDOR&nbsp;FRONT-END
+          {t("loader.role")}
         </motion.div>
       </motion.div>
     </motion.div>

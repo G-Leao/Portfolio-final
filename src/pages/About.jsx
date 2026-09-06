@@ -33,31 +33,20 @@ import {
   SiVite,
   SiPostgresql,
 } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 import ABOUT_IMAGE from "../assets/img/gustavo.jpeg";
 import logoImg from "@/assets/img/logoGustavo.png";
 
 const VALUES = [
-  {
-    icon: Target,
-    title: "Precisão",
-    desc: "Cada linha de código, cada interação e cada detalhe são desenvolvidos com atenção e cuidado, focando em entregar a melhor experiência possível.",
-  },
-  {
-    icon: Sparkles,
-    title: "Qualidade",
-    desc: "Código limpo e boas práticas são fundamentais. Interfaces modernas e responsivas que se destacam pela excelência.",
-  },
-  {
-    icon: Compass,
-    title: "Visão",
-    desc: "Sempre aprendendo e evoluindo, construindo interfaces que não apenas funcionam, mas entregam valor real aos usuários.",
-  },
+  { id: "precision", icon: Target },
+  { id: "quality", icon: Sparkles },
+  { id: "vision", icon: Compass },
 ];
 
 const KNOWLEDGE = [
   { name: "HTML5", level: 85 },
   { name: "CSS3", level: 80 },
-  { name: "Responsividade", level: 60 },
+  { name: "Responsividade", i18nKey: "about.knowledge.responsive", level: 60 },
   { name: "JavaScript", level: 50 },
   { name: "React", level: 45 },
   { name: "Git", level: 40 },
@@ -82,30 +71,11 @@ const STACK = [
 ];
 
 const PROCESS = [
-  {
-    icon: Search,
-    title: "Entender",
-    desc: "Analiso o problema, o público e os objetivos antes de qualquer linha de código.",
-  },
-  {
-    icon: ListChecks,
-    title: "Planejar",
-    desc: "Organizo estrutura, fluxo de telas e prioridades técnicas.",
-  },
-  {
-    icon: Code2,
-    title: "Desenvolver",
-    desc: "Construo com código limpo, componentizado e de fácil manutenção.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Evoluir",
-    desc: "Refino, otimizo performance e aplico o que aprendo em cada entrega.",
-  },
+  { id: "understand", icon: Search },
+  { id: "plan", icon: ListChecks },
+  { id: "develop", icon: Code2 },
+  { id: "evolve", icon: TrendingUp },
 ];
-
-const TERMINAL_LINE =
-  "const dev = { nome: 'Gustavo Leão', foco: 'front-end', status: 'em evolução' };";
 
 // Cursor piscante — cursor único, reutilizado via CSS animation
 function BlinkCursor() {
@@ -273,7 +243,7 @@ function StackCard({ name, Icon, color, index }) {
 }
 
 // ProcessStep: animação de scroll via CSS + IntersectionObserver em vez de múltiplos useTransform
-function ProcessStep({ step, index, isLast, shouldReduceMotion }) {
+function ProcessStep({ step, index, isLast, shouldReduceMotion, t }) {
   const Icon = step.icon;
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, amount: 0.4 });
@@ -297,9 +267,11 @@ function ProcessStep({ step, index, isLast, shouldReduceMotion }) {
           <Icon className="w-5 h-5 text-cyan-300" />
         </div>
         <h4 className="font-heading font-semibold text-slate-100 mb-1.5">
-          {step.title}
+          {t(`about.process.steps.${step.id}.title`)}
         </h4>
-        <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+        <p className="text-xs text-slate-400 leading-relaxed">
+          {t(`about.process.steps.${step.id}.desc`)}
+        </p>
       </motion.div>
 
       {!isLast && (
@@ -320,6 +292,7 @@ function makeParticles(count) {
 }
 
 export default function About({ onNavigate, activePage }) {
+  const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
   const particles = useMemo(() => makeParticles(10), []);
 
@@ -471,7 +444,7 @@ export default function About({ onNavigate, activePage }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
-            <SectionLabel>// SOBRE MIM</SectionLabel>
+            <SectionLabel>{t("about.sectionLabel")}</SectionLabel>
 
             <motion.div
               ref={imgRef}
@@ -499,7 +472,7 @@ export default function About({ onNavigate, activePage }) {
 
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="text-[10px] font-mono tracking-[0.2em] text-cyan-300/70">
-                  DESENVOLVEDOR FRONT-END
+                  {t("about.badge")}
                 </div>
               </div>
             </motion.div>
@@ -511,20 +484,16 @@ export default function About({ onNavigate, activePage }) {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
             className="flex flex-col justify-center"
           >
-            <TerminalTypeline text={TERMINAL_LINE} />
+            <TerminalTypeline text={t("about.terminalLine")} />
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.05] mb-6">
-              Desenvolvedor <span className="text-gradient">Front-end</span>
+              {t("about.titleStart")}{" "}
+              <span className="text-gradient">{t("about.titleHighlight")}</span>
             </h2>
             <p className="text-slate-400 leading-relaxed mb-5 text-[15px]">
-              Sou estudante de Engenharia de Software e desenvolvedor focado em
-              criar aplicações web modernas, responsivas e funcionais. Gosto de
-              transformar ideias em interfaces bem estruturadas e experiências
-              simples de utilizar.
+              {t("about.paragraph1")}
             </p>
             <p className="text-slate-400 leading-relaxed text-[15px]">
-              Atualmente, estou aprofundando meus conhecimentos em React,
-              TypeScript, APIs e desenvolvimento Full Stack, sempre colocando o
-              aprendizado em prática através de projetos próprios.
+              {t("about.paragraph2")}
             </p>
 
             <div className="mt-8 grid gap-3">
@@ -532,7 +501,7 @@ export default function About({ onNavigate, activePage }) {
                 const Icon = v.icon;
                 return (
                   <motion.div
-                    key={v.title}
+                    key={v.id}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + i * 0.12, duration: 0.6 }}
@@ -542,8 +511,12 @@ export default function About({ onNavigate, activePage }) {
                       <Icon className="w-5 h-5 text-cyan-300" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-slate-100 mb-0.5 text-sm">{v.title}</h3>
-                      <p className="text-xs text-slate-400 leading-relaxed">{v.desc}</p>
+                      <h3 className="font-medium text-slate-100 mb-0.5 text-sm">
+                        {t(`about.values.${v.id}.title`)}
+                      </h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        {t(`about.values.${v.id}.desc`)}
+                      </p>
                     </div>
                   </motion.div>
                 );
@@ -560,15 +533,20 @@ export default function About({ onNavigate, activePage }) {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7 }}
           >
-            <SectionLabel>// NÍVEL DE CONHECIMENTO</SectionLabel>
+            <SectionLabel>{t("about.knowledge.sectionLabel")}</SectionLabel>
             <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight mb-10">
-              Tecnologias que domino
+              {t("about.knowledge.title")}
             </h3>
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5">
             {KNOWLEDGE.map((skill, i) => (
-              <RadialSkill key={skill.name} name={skill.name} level={skill.level} index={i} />
+              <RadialSkill
+                key={skill.name}
+                name={skill.i18nKey ? t(skill.i18nKey) : skill.name}
+                level={skill.level}
+                index={i}
+              />
             ))}
           </div>
         </div>
@@ -581,9 +559,9 @@ export default function About({ onNavigate, activePage }) {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7 }}
           >
-            <SectionLabel>// STACK</SectionLabel>
+            <SectionLabel>{t("about.stack.sectionLabel")}</SectionLabel>
             <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight mb-10">
-              Ferramentas do dia a dia
+              {t("about.stack.title")}
             </h3>
           </motion.div>
 
@@ -608,20 +586,21 @@ export default function About({ onNavigate, activePage }) {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7 }}
           >
-            <SectionLabel>// COMO EU TRABALHO</SectionLabel>
+            <SectionLabel>{t("about.process.sectionLabel")}</SectionLabel>
             <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight mb-10">
-              Meu processo
+              {t("about.process.title")}
             </h3>
           </motion.div>
 
           <div className="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-4">
             {PROCESS.map((step, i) => (
               <ProcessStep
-                key={step.title}
+                key={step.id}
                 step={step}
                 index={i}
                 isLast={i === PROCESS.length - 1}
                 shouldReduceMotion={shouldReduceMotion}
+                t={t}
               />
             ))}
           </div>
@@ -639,7 +618,7 @@ export default function About({ onNavigate, activePage }) {
             onClick={() => onNavigate("experience")}
             className="group relative inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
           >
-            Ver experiência completa
+            {t("about.cta")}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-cyan-400/60 transition-transform duration-300 group-hover:scale-x-100" />
           </button>
