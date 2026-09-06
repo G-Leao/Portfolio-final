@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "Gustavo Leão — Desenvolvedor Front-end",
+    "description": "Gustavo Leão — Desenvolvedor Front-end especializado em React, Vite e interfaces modernas. Criando experiências digitais de alta qualidade com foco em performance e UX.",
+    "keywords": "Gustavo Leão, Desenvolvedor Front-end, React, JavaScript, HTML, CSS, Vite, UI/UX, Portfólio",
+    "ogTitle": "Gustavo Leão — Desenvolvedor Front-end",
+    "ogDescription": "Desenvolvedor Front-end especializado em React e tecnologias modernas. Construo interfaces rápidas e intuitivas."
+  },
+  "language": {
+    "selectorLabel": "Selecionar idioma",
+    "ptBR": "Português (Brasil)",
+    "en": "Inglês (Estados Unidos)",
+    "ptBRShort": "PT-BR",
+    "enShort": "EN"
+  },
+  "nav": {
+    "ariaLabel": "Navegação principal",
+    "home": "Início",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "experience": "Experiência",
+    "contact": "Contato"
+  },
+  "loader": {
+    "loading": "CARREGANDO PORTFÓLIO",
+    "role": "DESENVOLVEDOR FRONT-END"
+  },
+  "hero": {
+    "available": "DISPONÍVEL PARA PROJETOS",
+    "headline": ["DESENVOLVEDOR", "FRONT-END"],
+    "description": "Desenvolvedor focado na criação de aplicações web modernas, responsivas e funcionais. Transformo ideias em experiências digitais utilizando React, JavaScript e tecnologias atuais.",
+    "viewProjects": "Ver Projetos",
+    "contact": "Contato",
+    "scrollDown": "SAIBA MAIS",
+    "stats": {
+      "labels": {
+        "projects": "Projetos",
+        "technology": "Tecnologia",
+        "education": "Formação"
+      },
+      "values": {
+        "education": "Engenharia de Software"
+      }
+    }
+  },
+  "about": {
+    "sectionLabel": "// SOBRE MIM",
+    "badge": "DESENVOLVEDOR FRONT-END",
+    "terminalLine": "const dev = { nome: 'Gustavo Leão', foco: 'front-end', status: 'em evolução' };",
+    "titleStart": "Desenvolvedor",
+    "titleHighlight": "Front-end",
+    "paragraph1": "Sou estudante de Engenharia de Software e desenvolvedor focado em criar aplicações web modernas, responsivas e funcionais. Gosto de transformar ideias em interfaces bem estruturadas e experiências simples de utilizar.",
+    "paragraph2": "Atualmente, estou aprofundando meus conhecimentos em React, TypeScript, APIs e desenvolvimento Full Stack, sempre colocando o aprendizado em prática através de projetos próprios.",
+    "values": {
+      "precision": {
+        "title": "Precisão",
+        "desc": "Cada linha de código, cada interação e cada detalhe são desenvolvidos com atenção e cuidado, focando em entregar a melhor experiência possível."
+      },
+      "quality": {
+        "title": "Qualidade",
+        "desc": "Código limpo e boas práticas são fundamentais. Interfaces modernas e responsivas que se destacam pela excelência."
+      },
+      "vision": {
+        "title": "Visão",
+        "desc": "Sempre aprendendo e evoluindo, construindo interfaces que não apenas funcionam, mas entregam valor real aos usuários."
+      }
+    },
+    "knowledge": {
+      "sectionLabel": "// NÍVEL DE CONHECIMENTO",
+      "title": "Tecnologias que domino",
+      "responsive": "Responsividade"
+    },
+    "stack": {
+      "sectionLabel": "// STACK",
+      "title": "Ferramentas do dia a dia"
+    },
+    "process": {
+      "sectionLabel": "// COMO EU TRABALHO",
+      "title": "Meu processo",
+      "steps": {
+        "understand": {
+          "title": "Entender",
+          "desc": "Analiso o problema, o público e os objetivos antes de qualquer linha de código."
+        },
+        "plan": {
+          "title": "Planejar",
+          "desc": "Organizo estrutura, fluxo de telas e prioridades técnicas."
+        },
+        "develop": {
+          "title": "Desenvolver",
+          "desc": "Construo com código limpo, componentizado e de fácil manutenção."
+        },
+        "evolve": {
+          "title": "Evoluir",
+          "desc": "Refino, otimizo performance e aplico o que aprendo em cada entrega."
+        }
+      }
+    },
+    "cta": "Ver experiência completa"
+  },
+  "experience": {
+    "sectionLabel": "// EXPERIÊNCIA",
+    "titleStart": "A",
+    "titleHighlight": "Trajetória",
+    "description": "Estudante de Engenharia de Software pela UniCesumar, com foco em front-end — React, TypeScript, JavaScript, HTML e CSS. Construo projetos reais, do zero à lógica de negócio, sempre priorizando código limpo e acessibilidade. Buscando estágio ou oportunidade júnior em desenvolvimento web.",
+    "branchProfessional": "Profissional",
+    "branchEducation": "Formação",
+    "certifications": "Certificações",
+    "mergeText": "Vamos construir algo",
+    "roles": {
+      "salesConsultant": {
+        "period": "2025 — Presente",
+        "role": "Consultor de Vendas",
+        "company": "Gravina Jóias e Relógios",
+        "desc": "Atendimento ao cliente, organização, negociação e desenvolvimento de habilidades interpessoais essenciais.",
+        "achievements": [
+          "Atendimento ao cliente",
+          "Organização e gestão",
+          "Negociação",
+          "Relacionamento com clientes",
+          "Trabalho em equipe",
+          "Resolução de problemas"
+        ]
+      }
+    },
+    "education": {
+      "softwareEngineering": {
+        "period": "Mai 2025 — Mai 2029",
+        "role": "Engenharia de Software",
+        "company": "UniCesumar",
+        "desc": "Foco em desenvolvimento front-end — React, TypeScript, JavaScript, HTML e CSS. Construindo projetos reais, do zero à lógica de negócio, sempre priorizando código limpo e acessibilidade.",
+        "highlight": true,
+        "achievements": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "HTML & CSS",
+          "Acessibilidade e boas práticas"
+        ]
+      },
+      "itProjectManagement": {
+        "period": "Fev 2023 — Dez 2024",
+        "role": "Gestão de Projetos de TI",
+        "company": "Alura",
+        "desc": "Formação complementar em gestão de projetos de tecnologia.",
+        "achievements": ["Gestão de projetos", "Metodologias ágeis"]
+      },
+      "complementary": {
+        "period": "Out 2023",
+        "role": "Curso complementar",
+        "company": "Alura",
+        "desc": "Curso de curta duração na trilha de tecnologia.",
+        "achievements": []
+      }
+    },
+    "certificationsList": [
+      "Potencializando Seus Estudos e Carreira com IA (Chatbots, Copilotos e Agentes)",
+      "Fundamentos da IA Moderna: Machine Learning, LLMs, IA Generativa e Agentes",
+      "GitHub: compartilhando seus projetos",
+      "HTML e CSS: praticando HTML/CSS",
+      "HTML e CSS: responsividade com mobile-first"
+    ]
+  },
+  "projects": {
+    "sectionLabel": "// PROJETOS",
+    "title": "Projetos",
+    "titleHighlight": "Selecionados",
+    "live": "Ver ao vivo",
+    "code": "Código",
+    "details": "Ver detalhes",
+    "seeExperience": "Ver experiência →",
+    "closeModal": "Fechar detalhes",
+    "prevProject": "Projeto anterior",
+    "nextProject": "Próximo projeto",
+    "status": {
+      "completed": "Concluído"
+    },
+    "categories": {
+      "react": "React",
+      "webapp": "Web App",
+      "webappReact": "Web App React",
+      "fullstack": "Sistema Web Full Stack",
+      "uix": "UI/UX"
+    },
+    "modal": {
+      "description": "Descrição",
+      "features": "Principais funcionalidades",
+      "challenge": "Desafio",
+      "solution": "Solução",
+      "objective": "Objetivo / Foco",
+      "tech": "Tecnologias"
+    },
+    "items": {
+      "portfolio": {
+        "title": "Portfólio Profissional",
+        "categoryKey": "react",
+        "description": "Portfólio pessoal desenvolvido em React para apresentar meus projetos, habilidades e experiências, com foco em uma interface moderna, responsiva e interativa.",
+        "fullDescription": "Desenvolvi este portfólio como uma forma de apresentar meu trabalho e minha evolução na área de desenvolvimento de software. A aplicação foi construída pensando não apenas no visual, mas também na experiência de navegação, utilizando animações, transições e componentes reutilizáveis para criar uma experiência mais dinâmica.",
+        "features": [
+          "Navegação fluida entre seções com animações",
+          "Design responsivo para mobile, tablet e desktop",
+          "Componentização reutilizável em React",
+          "Build otimizado com Vite para carregamento rápido"
+        ],
+        "challenges": "Equilibrar um visual rico em animações (Framer Motion, gradientes, efeitos de glassmorphism) sem comprometer a performance de carregamento e a fluidez em dispositivos mais fracos.",
+        "solution": "Uso de componentes leves e reutilizáveis, lazy loading de assets e ajuste fino das transições do Framer Motion para manter 60fps mesmo em telas mais simples.",
+        "objective": "Servir como cartão de visitas técnico, demonstrando domínio de React, animações e boas práticas de UI/UX."
+      },
+      "gestao": {
+        "title": "Sistema de Gestão de Vendas",
+        "categoryKey": "webapp",
+        "description": "Sistema web desenvolvido para organizar vendas, clientes e informações comerciais em uma única plataforma.",
+        "fullDescription": "Sistema web voltado para times comerciais, permitindo cadastrar clientes, registrar vendas e acompanhar o fluxo comercial do dia a dia de forma organizada. O objetivo foi substituir controles manuais (planilhas soltas) por uma interface única e centralizada.",
+        "features": [
+          "Cadastro e gerenciamento de clientes",
+          "Registro e histórico de vendas",
+          "Organização do fluxo comercial em uma única tela",
+          "Interface pensada para uso rápido no dia a dia"
+        ],
+        "challenges": "Estruturar os dados de vendas e clientes de forma organizada usando apenas tecnologias base (HTML, CSS e JavaScript puro), sem um framework para gerenciar estado.",
+        "solution": "Modelagem cuidadosa dos dados em JavaScript e manipulação direta do DOM para manter a interface reativa e sincronizada com as informações cadastradas.",
+        "objective": "Facilitar a rotina do time comercial, reduzindo erros e retrabalho causados por controles manuais dispersos."
+      },
+      "watchhub": {
+        "title": "Watch Hub",
+        "categoryKey": "webappReact",
+        "description": "Aplicação para cadastro, gerenciamento e comparação de relógios.",
+        "fullDescription": "Aplicação voltada para colecionadores e entusiastas de relógios, permitindo cadastrar peças da coleção, organizar informações de cada modelo e compará-los lado a lado para apoiar decisões de compra ou apenas organizar o acervo pessoal.",
+        "features": [
+          "Cadastro de relógios com detalhes específicos de cada modelo",
+          "Comparação lado a lado entre dois ou mais relógios",
+          "Organização visual da coleção do usuário",
+          "Interface reativa construída em componentes React"
+        ],
+        "challenges": "Criar uma lógica de comparação que fosse clara visualmente, destacando diferenças entre os modelos sem poluir a tela com informação demais.",
+        "solution": "Divisão da interface em componentes independentes por relógio e uso de estado do React para sincronizar a seleção e a exibição comparativa em tempo real.",
+        "objective": "Oferecer uma ferramenta simples e visual para organizar e comparar itens de uma coleção."
+      },
+      "publibus": {
+        "title": "PUBLI-BUS",
+        "categoryKey": "fullstack",
+        "description": "Plataforma para gerenciamento de publicidade em ônibus, permitindo controlar anunciantes, campanhas e espaços publicitários.",
+        "fullDescription": "Sistema desenvolvido para facilitar o gerenciamento de campanhas publicitárias veiculadas em ônibus. A plataforma centraliza informações de anunciantes, campanhas e espaços publicitários, oferecendo uma interface administrativa para acompanhar e organizar as operações de forma mais prática e eficiente.",
+        "features": [
+          "Cadastro e gerenciamento de anunciantes",
+          "Criação e gerenciamento de campanhas publicitárias",
+          "Controle de espaços e dispositivos de exibição",
+          "Sistema de autenticação e gerenciamento de usuários",
+          "Dashboard para acompanhamento das informações",
+          "Integração entre frontend, API e banco de dados"
+        ],
+        "challenges": "Criar uma aplicação completa que conectasse o frontend ao backend e ao banco de dados, mantendo os dados seguros, organizados e sincronizados.",
+        "solution": "Desenvolvimento de uma arquitetura full stack utilizando React no frontend, Node.js e Express no backend, Prisma para comunicação com o banco de dados e autenticação para controle de acesso.",
+        "objective": "Criar uma plataforma centralizada para gerenciar publicidade em ônibus, tornando o controle de anunciantes e campanhas mais organizado e eficiente."
+      },
+      "aresportes": {
+        "title": "AR Esportes",
+        "categoryKey": "webapp",
+        "description": "Site institucional para academia de judô, apresentando marca e modalidades.",
+        "fullDescription": "Landing page institucional desenvolvida para uma academia de judô, com o objetivo de apresentar a marca, as modalidades oferecidas e os canais de contato de forma clara, direta e responsiva, facilitando a captação de novos alunos.",
+        "features": [
+          "Seção de apresentação da marca e modalidades",
+          "Layout responsivo para acesso via celular",
+          "Chamadas para contato e matrícula em destaque",
+          "Estrutura leve, com carregamento rápido"
+        ],
+        "challenges": "Transmitir a identidade e a energia de uma academia esportiva usando apenas HTML, CSS e JavaScript, sem recorrer a bibliotecas visuais prontas.",
+        "solution": "Uso de CSS customizado com foco em tipografia forte, contrastes e uma estrutura de seções objetiva, priorizando a jornada do visitante até o contato.",
+        "objective": "Aumentar a presença digital da academia e facilitar o primeiro contato de possíveis alunos."
+      },
+      "advocacia": {
+        "title": "Advocacia Bilobran & Palaci",
+        "categoryKey": "webapp",
+        "description": "Site institucional para escritório de advocacia, com áreas de atuação e contato.",
+        "fullDescription": "Site institucional desenvolvido para um escritório de advocacia, apresentando as áreas de atuação, a proposta de valor do escritório e os canais de contato, com um visual mais sóbrio e profissional, alinhado ao segmento jurídico.",
+        "features": [
+          "Apresentação das áreas de atuação do escritório",
+          "Seção institucional sobre o escritório",
+          "Canais de contato em destaque",
+          "Layout responsivo e visual sóbrio, adequado ao segmento"
+        ],
+        "challenges": "Adaptar a linguagem visual para um público e segmento diferente do usual (jurídico), priorizando seriedade e confiança em vez de elementos mais chamativos.",
+        "solution": "Definição de uma paleta e tipografia mais sóbrias, com foco em legibilidade e organização clara das informações institucionais e de contato.",
+        "objective": "Fortalecer a presença digital do escritório e transmitir credibilidade a potenciais clientes."
+      },
+      "cadastro": {
+        "title": "Sistema de Cadastro",
+        "categoryKey": "webapp",
+        "description": "Aplicação para cadastro e gerenciamento de usuários em JavaScript puro.",
+        "fullDescription": "Aplicação de cadastro de usuários construída em JavaScript puro, com validação de formulário e persistência simples de dados, focada em consolidar conceitos fundamentais de manipulação do DOM e lógica de validação sem depender de frameworks.",
+        "features": [
+          "Formulário de cadastro com validação de campos",
+          "Persistência simples dos dados cadastrados",
+          "Listagem e gerenciamento dos usuários cadastrados",
+          "Feedback visual de erros de preenchimento"
+        ],
+        "challenges": "Implementar validações robustas de formulário e persistência de dados sem o auxílio de bibliotecas, utilizando apenas JavaScript puro.",
+        "solution": "Criação de funções de validação reutilizáveis e uso do armazenamento local do navegador para simular persistência dos dados entre sessões.",
+        "objective": "Reforçar fundamentos de JavaScript puro aplicados a um caso real de cadastro e validação de dados."
+      },
+      "login": {
+        "title": "Interface de Login",
+        "categoryKey": "uix",
+        "description": "Tela de autenticação moderna com foco em experiência de conversão.",
+        "fullDescription": "Tela de autenticação (login) desenvolvida com foco em design moderno, transições suaves e boa experiência do usuário, priorizando clareza visual e redução de fricção no processo de entrada do usuário na aplicação.",
+        "features": [
+          "Layout responsivo para diferentes tamanhos de tela",
+          "Transições e microinterações suaves nos campos",
+          "Validação visual de campos de e-mail e senha",
+          "Design focado em conversão e clareza"
+        ],
+        "challenges": "Criar uma experiência de autenticação que parecesse moderna e agradável sem exagerar em elementos visuais que atrapalhassem a usabilidade.",
+        "solution": "Uso de microinterações discretas em CSS/JS, hierarquia visual clara entre os campos e botões, e testes de usabilidade focados em reduzir a fricção do preenchimento.",
+        "objective": "Demonstrar boas práticas de UI/UX aplicadas a um fluxo crítico: a entrada do usuário no sistema."
+      }
+    }
+  },
+  "contact": {
+    "sectionLabel": "CONTATOS",
+    "title": "Vamos construir",
+    "titleHighlight": "algo",
+    "subtitle": "Não gosto de formulários. Fale comigo pelo terminal.",
+    "terminalTitle": "gustavo@contato — zsh",
+    "boot": "sistema pronto. digite 'help' para ver os comandos.",
+    "placeholder": "digite 'help'...",
+    "commandError": "comando não encontrado: \"{{cmd}}\". digite 'help'.",
+    "helpCommand": "comandos disponíveis:",
+    "whoami": [
+      "Gustavo Leão — Estudante de Engenharia de Software (UniCesumar).",
+      "Foco em front-end: React, TypeScript, JavaScript, HTML e CSS.",
+      "Ponta Grossa, Paraná — buscando estágio ou vaga júnior."
+    ],
+    "skills": "React · TypeScript · JavaScript · HTML · CSS · Web Design Responsivo"
+  },
+  "notFound": {
+    "title": "Página Não Encontrada",
+    "messageStart": "A página",
+    "messageEnd": "não pôde ser encontrada nesta aplicação.",
+    "adminNote": "Nota do Administrador",
+    "adminContent": "Isso pode significar que a IA ainda não implementou esta página. Peça para implementá-la no chat.",
+    "backHome": "Voltar ao Início"
+  }
+}

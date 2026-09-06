@@ -62,7 +62,6 @@ function Experience() {
           <FloatingNav
             activePage={activePage}
             onNavigate={handleNavigate}
-            showLogo={activePage === "projects"}
           />
           <div className="relative pb-16 md:pb-0" style={{ zIndex: 2 }}>
             <CubeStage activePage={activePage} onNavigate={handleNavigate} />

@@ -7,21 +7,30 @@ import {
   useReducedMotion,
   animate,
 } from "framer-motion";
-import { ArrowRight, Mail, Sparkles, Code2, Braces, FileCode2 } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  Sparkles,
+  Code2,
+  Braces,
+  FileCode2,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 import MagneticButton from "@/components/MagneticButton";
 
-const HEADLINE = ["DESENVOLVEDOR", "FRONT-END"];
 const NAME = "Gustavo Leão";
 
-const DESCRIPTION =
-  "Desenvolvedor focado na criação de aplicações web modernas, responsivas e funcionais. Transformo ideias em experiências digitais utilizando React, JavaScript e tecnologias atuais.";
-
 const STATS = [
-  { value: "10", suffix: "+", label: "Projetos", counter: true, size: "text-xl md:text-2xl" },
-  { value: "React", label: "Tecnologia", size: "text-base md:text-xl" },
   {
-    value: "Engenharia de Software",
-    label: "Formação",
+    id: "projects",
+    suffix: "+",
+    counter: true,
+    size: "text-xl md:text-2xl",
+  },
+  { id: "technology", value: "React", size: "text-base md:text-xl" },
+  {
+    id: "education",
+    valueKey: "hero.stats.values.education",
     size: "text-[0.6rem] leading-tight sm:text-xs md:text-sm",
   },
 ];
@@ -61,6 +70,8 @@ const fadeUp = {
 };
 
 export default function Home({ onNavigate, activePage }) {
+  const { t } = useTranslation();
+  const headline = t("hero.headline", { returnObjects: true });
   const sectionRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -253,13 +264,13 @@ export default function Home({ onNavigate, activePage }) {
           </span>
           <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
           <span className="text-[11px] font-mono tracking-[0.25em] text-cyan-300/90">
-            DISPONÍVEL PARA PROJETOS
+            {t("hero.available")}
           </span>
         </motion.div>
 
         {/* Título Principal */}
         <h1 className="font-heading font-bold tracking-[-0.03em] leading-[0.95] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-          {HEADLINE.map((word, i) => (
+          {headline.map((word, i) => (
             <motion.span key={word} className="block overflow-hidden">
               <motion.span
                 className="block"
@@ -310,7 +321,7 @@ export default function Home({ onNavigate, activePage }) {
           variants={fadeUp}
           className="mt-3 md:mt-4 text-xs sm:text-sm md:text-base text-slate-400 max-w-xl mx-auto leading-relaxed px-2"
         >
-          {DESCRIPTION}
+          {t("hero.description")}
         </motion.p>
 
         {/* Botões */}
@@ -327,7 +338,7 @@ export default function Home({ onNavigate, activePage }) {
               onClick={() => onNavigate("projects")}
               className="group w-full sm:w-auto"
             >
-              Ver Projetos{" "}
+              {t("hero.viewProjects")}{" "}
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </MagneticButton>
           </motion.div>
@@ -341,7 +352,7 @@ export default function Home({ onNavigate, activePage }) {
               variant="secondary"
               className="group w-full sm:w-auto"
             >
-              Contato{" "}
+              {t("hero.contact")}{" "}
               <Mail className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
             </MagneticButton>
           </motion.div>
@@ -354,17 +365,21 @@ export default function Home({ onNavigate, activePage }) {
         >
           {STATS.map((s, i) => (
             <motion.div
-              key={s.label}
+              key={s.id}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.15 + i * 0.12, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
               className="text-center"
             >
               <div className={`font-heading font-bold text-gradient-subtle ${s.size}`}>
-                {s.counter ? `${count}${s.suffix ?? ""}` : s.value}
+                {s.counter
+                  ? `${count}${s.suffix ?? ""}`
+                  : s.valueKey
+                    ? t(s.valueKey)
+                    : s.value}
               </div>
               <div className="text-[10px] font-mono tracking-[0.2em] text-slate-500 mt-1">
-                {s.label.toUpperCase()}
+                {t(`hero.stats.labels.${s.id}`).toUpperCase()}
               </div>
             </motion.div>
           ))}
@@ -379,7 +394,7 @@ export default function Home({ onNavigate, activePage }) {
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-[0.25em] text-slate-500 hover:text-cyan-300 transition-colors duration-300 flex flex-col items-center gap-1.5"
       >
-        SAIBA MAIS
+        {t("hero.scrollDown")}
         <span className="relative w-px h-5 overflow-hidden bg-slate-700/50">
           <motion.span
             className="absolute inset-x-0 top-0 h-3 bg-gradient-to-b from-cyan-400 to-transparent"

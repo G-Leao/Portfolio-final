@@ -1,198 +1,303 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Send, Check } from "lucide-react";
-import logoImg from "@/assets/img/logoGustavo.png";
+import { useTranslation } from "react-i18next";
+import { Mail, Linkedin, Github, Copy, Check, Terminal as TerminalIcon } from "lucide-react";
 
-const SOCIALS = [
-  {
-    icon: Mail,
-    label: "Email",
-    href: "mailto:dev.g.leao@gmail.com",
-    value: "dev.g.leao@gmail.com",
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/gustavo-leaodev/",
-    value: "/in/gustavo-leaodev/",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    href: "https://github.com/G-Leao",
-    value: "@G-Leao",
-  },
-];
+const CONTACT_DATA = {
+  email: "dev.g.leao@gmail.com",
+  linkedin: "https://www.linkedin.com/in/gustavo-leaodev/",
+  github: "https://github.com/G-Leao",
+};
 
-export default function Contact({ onNavigate }) {
-  const [role, setRole] = useState("");
-  const [project, setProject] = useState("");
-  const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+const COMMANDS = ["help", "whoami", "skills", "contact", "email", "linkedin", "github", "clear"];
 
-  const totalChars = role.length + project.length + message.length;
-  const glow = Math.min(totalChars / 120, 1);
-  const isReady = role.trim() && project.trim();
+const GLYPHS = "!<>-_\\/[]{}—=+*^?#________";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!isReady) return;
-    const subject = encodeURIComponent(`Contato: ${role}`);
-    const body = encodeURIComponent(`Projeto: ${project}\n\n${message}`);
-    window.location.href = `mailto:dev.g.leao@gmail.com.com?subject=${subject}&body=${body}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+// Efeito de "decrypt" tipo hacker revelando texto
+function useDecrypt(target, trigger) {
+  const [text, setText] = useState("");
+  useEffect(() => {
+    if (!trigger) return;
+    let frame = 0;
+    const totalFrames = 18;
+    const interval = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      const revealCount = Math.floor(target.length * progress);
+      const scrambled = target
+        .split("")
+        .map((ch, i) => {
+          if (ch === " ") return " ";
+          if (i < revealCount) return ch;
+          return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        })
+        .join("");
+      setText(scrambled);
+      if (frame >= totalFrames) {
+        setText(target);
+        clearInterval(interval);
+      }
+    }, 35);
+    return () => clearInterval(interval);
+  }, [trigger, target]);
+  return text;
+}
+
+function DecryptLine({ value, icon: Icon, href, copyable }) {
+  const decrypted = useDecrypt(value, true);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 pb-28 md:pb-24">
-      {/* Logo no canto superior esquerdo */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-        className="absolute top-6 left-6 md:top-8 md:left-10 lg:left-16 z-10"
+    <div className="flex items-center gap-3 py-1.5 group">
+      <Icon className="w-3.5 h-3.5 text-cyan-400/70 shrink-0" />
+      <a
+        href={href}
+        target={href?.startsWith("http") ? "_blank" : undefined}
+        rel="noopener noreferrer"
+        className="text-sm font-mono text-slate-100 tracking-wide hover:text-cyan-300 transition-colors"
       >
-        <img
-          src={logoImg}
-          alt="Gustavo Leão"
-          className="h-6 md:h-10 w-auto object-contain"
-        />
-      </motion.div>
+        {decrypted}
+      </a>
+      {copyable && (
+        <button
+          onClick={handleCopy}
+          className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-slate-500 hover:text-cyan-300"
+        >
+          {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+        </button>
+      )}
+    </div>
+  );
+}
 
-      {/* Dynamic glow */}
+function CommandOutput({ cmd, t }) {
+  switch (cmd) {
+    case "help":
+      return (
+        <div className="text-slate-400 space-y-0.5">
+          <div>{t("contact.helpCommand")}</div>
+          <div className="pl-4 text-slate-500">
+            {COMMANDS.map((c) => (
+              <div key={c}>
+                <span className="text-cyan-400/80">$</span> {c}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    case "whoami":
+      return (
+        <div className="text-slate-300 leading-relaxed">
+          {t("contact.whoami", { returnObjects: true }).map((line, i, arr) => (
+            <span key={i}>
+              {line}
+              {i < arr.length - 1 ? <br /> : null}
+            </span>
+          ))}
+        </div>
+      );
+    case "skills":
+      return <div className="text-slate-300">{t("contact.skills")}</div>;
+    case "contact":
+      return (
+        <div className="space-y-1">
+          <DecryptLine value={CONTACT_DATA.email} icon={Mail} href={`mailto:${CONTACT_DATA.email}`} copyable />
+          <DecryptLine value="/in/gustavo-leaodev/" icon={Linkedin} href={CONTACT_DATA.linkedin} />
+          <DecryptLine value="@G-Leao" icon={Github} href={CONTACT_DATA.github} />
+        </div>
+      );
+    case "email":
+      return (
+        <DecryptLine value={CONTACT_DATA.email} icon={Mail} href={`mailto:${CONTACT_DATA.email}`} copyable />
+      );
+    case "linkedin":
+      return (
+        <DecryptLine value="/in/gustavo-leaodev/" icon={Linkedin} href={CONTACT_DATA.linkedin} />
+      );
+    case "github":
+      return <DecryptLine value="@G-Leao" icon={Github} href={CONTACT_DATA.github} />;
+    default:
+      return null;
+  }
+}
+
+export default function Contact({ onNavigate }) {
+  const { t } = useTranslation();
+  const [history, setHistory] = useState([
+    { type: "system", i18nKey: "contact.boot" },
+  ]);
+  const [input, setInput] = useState("");
+  const [cmdHistory, setCmdHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const inputRef = useRef(null);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [history]);
+
+  const runCommand = useCallback((raw) => {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+
+    setCmdHistory((h) => [...h, cmd]);
+    setHistoryIndex(-1);
+
+    if (cmd === "clear") {
+      setHistory([]);
+      return;
+    }
+
+    setHistory((h) => [...h, { type: "input", content: cmd }]);
+
+    if (cmd === "help" || cmd === "whoami" || cmd === "skills" || cmd === "contact" || cmd === "email" || cmd === "linkedin" || cmd === "github") {
+      setHistory((h) => [...h, { type: "output", cmd }]);
+    } else {
+      setHistory((h) => [
+        ...h,
+        {
+          type: "error",
+          i18nKey: "contact.commandError",
+          params: { cmd },
+        },
+      ]);
+    }
+  }, []);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      runCommand(input);
+      setInput("");
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!cmdHistory.length) return;
+      const nextIndex = historyIndex === -1 ? cmdHistory.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(nextIndex);
+      setInput(cmdHistory[nextIndex]);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyIndex === -1) return;
+      const nextIndex = historyIndex + 1;
+      if (nextIndex >= cmdHistory.length) {
+        setHistoryIndex(-1);
+        setInput("");
+      } else {
+        setHistoryIndex(nextIndex);
+        setInput(cmdHistory[nextIndex]);
+      }
+    } else if (e.key === "Tab") {
+      e.preventDefault();
+      const match = COMMANDS.find((c) => c.startsWith(input.toLowerCase()));
+      if (match) setInput(match);
+    }
+  };
+
+  return (
+    <section
+      className="relative w-full h-screen overflow-hidden flex items-center justify-center px-6 py-10"
+      onClick={() => inputRef.current?.focus()}
+    >
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: 0.15 + glow * 0.45 }}
-        transition={{ duration: 0.4 }}
+        animate={{ opacity: [0.15, 0.3, 0.15] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.15), transparent 55%)",
+          background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.15), transparent 55%)",
         }}
       />
 
-      <div className="relative max-w-2xl w-full">
+      <div className="relative max-w-2xl w-full h-full flex flex-col">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-12"
+          className="text-center mb-6 shrink-0"
         >
-          <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-4">
-            CONTATOS
-          </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
-            Vamos construir <span className="text-gradient">algo</span>
+          <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-3">{t("contact.sectionLabel")}</div>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[0.95] mb-3">
+            {t("contact.title")}{" "}
+            <span className="text-gradient">{t("contact.titleHighlight")}</span>
           </h2>
-          <p className="text-slate-400 max-w-md mx-auto leading-relaxed">
-            Tem um projeto em mente? Entre em contato e retornarei em até 48
-            horas.
+          <p className="text-slate-400 max-w-md mx-auto leading-relaxed text-sm">
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
-        {/* Terminal-style form */}
-        <motion.form
-          onSubmit={handleSubmit}
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-7 md:p-9"
+          className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden flex flex-col flex-1 min-h-0"
         >
-          <div className="flex items-center gap-1.5 mb-6 pb-5 border-b border-white/5">
+          <div className="flex items-center gap-1.5 px-7 md:px-9 py-4 border-b border-white/5 shrink-0">
             <div className="w-2.5 h-2.5 rounded-full bg-red-400/40" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/40" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-400/40" />
-            <span className="ml-3 text-[11px] font-mono text-slate-500">
-              ~/contato — bash
+            <span className="ml-3 text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+              <TerminalIcon className="w-3 h-3" /> {t("contact.terminalTitle")}
             </span>
           </div>
 
-          <div className="space-y-6">
-            <div>
-              <label className="block text-xs font-mono text-cyan-400/70 mb-2">
-                Você está procurando
-              </label>
-              <input
-                type="text"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                placeholder="um desenvolvedor front-end"
-                className="w-full bg-transparent border-b border-white/10 focus:border-cyan-400/50 outline-none py-2.5 text-lg text-slate-100 placeholder:text-slate-600 transition-colors"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-mono text-cyan-400/70 mb-2">
-                para ajudar com
-              </label>
-              <input
-                type="text"
-                value={project}
-                onChange={(e) => setProject(e.target.value)}
-                placeholder="um projeto web"
-                className="w-full bg-transparent border-b border-white/10 focus:border-cyan-400/50 outline-none py-2.5 text-lg text-slate-100 placeholder:text-slate-600 transition-colors"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-mono text-cyan-400/70 mb-2">
-                contexto adicional
-              </label>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Conte-me sobre o projeto, prazo..."
-                rows={3}
-                className="w-full bg-transparent border border-white/10 focus:border-cyan-400/50 rounded-xl outline-none py-3 px-4 text-sm text-slate-100 placeholder:text-slate-600 transition-colors resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={!isReady || sent}
-              className="relative w-full overflow-hidden flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-medium text-sm transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed group"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-indigo-500 transition-transform duration-500 group-hover:scale-105" />
-              <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="relative flex items-center gap-2 text-slate-950">
-                {sent ? (
-                  <>
-                    <Check className="w-4 h-4" /> Mensagem Enviada
-                  </>
-                ) : (
-                  <>
-                    Enviar Mensagem <Send className="w-4 h-4" />
-                  </>
+          <div ref={scrollRef} className="px-7 md:px-9 py-6 font-mono text-[13px] space-y-2 flex-1 min-h-0 overflow-y-auto">
+            {history.map((item, i) => (
+              <div key={i}>
+                {item.type === "system" && <div className="text-slate-500">{t(item.i18nKey)}</div>}
+                {item.type === "input" && (
+                  <div className="text-slate-300">
+                    <span className="text-cyan-400">$</span> {item.content}
+                  </div>
                 )}
-              </span>
-            </button>
-          </div>
-        </motion.form>
+                {item.type === "output" && (
+                  <div>
+                    <CommandOutput cmd={item.cmd} t={t} />
+                  </div>
+                )}
+                {item.type === "error" && (
+                  <div className="text-rose-400/80">{t(item.i18nKey, item.params)}</div>
+                )}
+              </div>
+            ))}
 
-        {/* Socials */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-          className="mt-8 grid grid-cols-3 gap-3"
-        >
-          {SOCIALS.map((s) => {
-            const Icon = s.icon;
-            return (
-              <a
-                key={s.label}
-                href={s.href}
-                target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-2 p-4 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-cyan-400/20 hover:bg-white/[0.04] transition-colors duration-300"
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-cyan-400">$</span>
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                autoFocus
+                spellCheck={false}
+                className="flex-1 bg-transparent outline-none text-slate-100 caret-cyan-400"
+                placeholder={t("contact.placeholder")}
+              />
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 1, repeat: Infinity }}
+                className="w-2 h-4 bg-cyan-400/70 inline-block"
+              />
+            </div>
+          </div>
+
+          <div className="px-7 md:px-9 py-3 border-t border-white/5 flex flex-wrap gap-2 shrink-0">
+            {["contact", "email", "skills"].map((c) => (
+              <button
+                key={c}
+                onClick={() => {
+                  runCommand(c);
+                  inputRef.current?.focus();
+                }}
+                className="text-[10px] font-mono px-2.5 py-1 rounded-md border border-white/10 text-slate-500 hover:text-cyan-300 hover:border-cyan-400/30 transition-colors"
               >
-                <Icon className="w-5 h-5 text-slate-400 group-hover:text-cyan-300 transition-colors duration-300" />
-                <div className="text-[10px] font-mono text-slate-500 group-hover:text-slate-300 transition-colors">
-                  {s.value}
-                </div>
-              </a>
-            );
-          })}
+                {c}
+              </button>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

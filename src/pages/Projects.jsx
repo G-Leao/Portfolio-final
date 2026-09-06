@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import WatchHub from "../assets/img/WATCHHUB.png";
+import { useTranslation } from "react-i18next";
 import Port from "../assets/img/Portfolio.png";
 import Gestao from "../assets/img/siSTEMAGESTAO.png";
 import Ar from "../assets/img/aresportes.png";
@@ -22,218 +23,72 @@ import PubliBus from "../assets/img/publibus.png";
 
 const PROJECTS = [
   {
-    title: "Portfólio Profissional",
-    category: "React",
-    description:
-      "Portfólio pessoal desenvolvido em React para apresentar meus projetos, habilidades e experiências, com foco em uma interface moderna, responsiva e interativa..",
-    fullDescription:
-      "Desenvolvi este portfólio como uma forma de apresentar meu trabalho e minha evolução na área de desenvolvimento de software. A aplicação foi construída pensando não apenas no visual, mas também na experiência de navegação, utilizando animações, transições e componentes reutilizáveis para criar uma experiência mais dinâmica.",
-    features: [
-      "Navegação fluida entre seções com animações",
-      "Design responsivo para mobile, tablet e desktop",
-      "Componentização reutilizável em React",
-      "Build otimizado com Vite para carregamento rápido",
-    ],
-    challenges:
-      "Equilibrar um visual rico em animações (Framer Motion, gradientes, efeitos de glassmorphism) sem comprometer a performance de carregamento e a fluidez em dispositivos mais fracos.",
-    solution:
-      "Uso de componentes leves e reutilizáveis, lazy loading de assets e ajuste fino das transições do Framer Motion para manter 60fps mesmo em telas mais simples.",
-    objective:
-      "Servir como cartão de visitas técnico, demonstrando domínio de React, animações e boas práticas de UI/UX.",
-    status: "Concluído",
+    id: "portfolio",
     tech: ["React", "Vite", "CSS", "JavaScript"],
     image: Port,
     github: "https://github.com/G-Leao/Portfolio-final",
     live: "https://gustavol.vercel.app/",
   },
   {
-    title: "Sistema de Gestão de Vendas",
-    category: "Web App",
-    description:
-      "Sistema web desenvolvido para organizar vendas, clientes e informações comerciais em uma única plataforma. ",
-    fullDescription:
-      "Sistema web voltado para times comerciais, permitindo cadastrar clientes, registrar vendas e acompanhar o fluxo comercial do dia a dia de forma organizada. O objetivo foi substituir controles manuais (planilhas soltas) por uma interface única e centralizada.",
-    features: [
-      "Cadastro e gerenciamento de clientes",
-      "Registro e histórico de vendas",
-      "Organização do fluxo comercial em uma única tela",
-      "Interface pensada para uso rápido no dia a dia",
-    ],
-    challenges:
-      "Estruturar os dados de vendas e clientes de forma organizada usando apenas tecnologias base (HTML, CSS e JavaScript puro), sem um framework para gerenciar estado.",
-    solution:
-      "Modelagem cuidadosa dos dados em JavaScript e manipulação direta do DOM para manter a interface reativa e sincronizada com as informações cadastradas.",
-    objective:
-      "Facilitar a rotina do time comercial, reduzindo erros e retrabalho causados por controles manuais dispersos.",
-    status: "Concluído",
+    id: "gestao",
     tech: ["HTML", "CSS", "JavaScript"],
     image: Gestao,
     github: "https://github.com/G-Leao/Sistema-de-gestao-de-vendas",
     live: "https://sistema-de-gestao-de-vendas-black.vercel.app/",
   },
   {
-    title: "Watch Hub",
-    category: "Web App React",
-    description:
-      "Aplicação para cadastro, gerenciamento e comparação de relógios.",
-    fullDescription:
-      "Aplicação voltada para colecionadores e entusiastas de relógios, permitindo cadastrar peças da coleção, organizar informações de cada modelo e compará-los lado a lado para apoiar decisões de compra ou apenas organizar o acervo pessoal.",
-    features: [
-      "Cadastro de relógios com detalhes específicos de cada modelo",
-      "Comparação lado a lado entre dois ou mais relógios",
-      "Organização visual da coleção do usuário",
-      "Interface reativa construída em componentes React",
-    ],
-    challenges:
-      "Criar uma lógica de comparação que fosse clara visualmente, destacando diferenças entre os modelos sem poluir a tela com informação demais.",
-    solution:
-      "Divisão da interface em componentes independentes por relógio e uso de estado do React para sincronizar a seleção e a exibição comparativa em tempo real.",
-    objective:
-      "Oferecer uma ferramenta simples e visual para organizar e comparar itens de uma coleção.",
-    status: "Concluído",
+    id: "watchhub",
     tech: ["React", "Vite", "CSS", "JavaScript"],
     image: WatchHub,
     github: "https://github.com/G-Leao/watch-hub",
     live: "https://watch-hub-nine.vercel.app/",
   },
   {
-    title: "PUBLI-BUS",
-    category: "Sistema Web Full Stack",
-    description:
-      "Plataforma para gerenciamento de publicidade em ônibus, permitindo controlar anunciantes, campanhas e espaços publicitários.",
-    fullDescription:
-      "Sistema desenvolvido para facilitar o gerenciamento de campanhas publicitárias veiculadas em ônibus. A plataforma centraliza informações de anunciantes, campanhas e espaços publicitários, oferecendo uma interface administrativa para acompanhar e organizar as operações de forma mais prática e eficiente.",
-    features: [
-      "Cadastro e gerenciamento de anunciantes",
-      "Criação e gerenciamento de campanhas publicitárias",
-      "Controle de espaços e dispositivos de exibição",
-      "Sistema de autenticação e gerenciamento de usuários",
-      "Dashboard para acompanhamento das informações",
-      "Integração entre frontend, API e banco de dados",
-    ],
-    challenges:
-      "Criar uma aplicação completa que conectasse o frontend ao backend e ao banco de dados, mantendo os dados seguros, organizados e sincronizados.",
-    solution:
-      "Desenvolvimento de uma arquitetura full stack utilizando React no frontend, Node.js e Express no backend, Prisma para comunicação com o banco de dados e autenticação para controle de acesso.",
-    objective:
-      "Criar uma plataforma centralizada para gerenciar publicidade em ônibus, tornando o controle de anunciantes e campanhas mais organizado e eficiente.",
-    status: "Concluído",
-    tech: [
-      "React",
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "Prisma",
-      "PostgreSQL",
-      "Vercel",
-      "Railway",
-    ],
+    id: "publibus",
+    tech: ["React", "JavaScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Vercel", "Railway"],
     image: PubliBus,
     github: "https://github.com/G-Leao/PUBLI-BUS",
     live: "https://publi-bus.vercel.app/",
   },
-
   {
-    title: "AR Esportes",
-    category: "Web App",
-    description:
-      "Site institucional para academia de judô, apresentando marca e modalidades.",
-    fullDescription:
-      "Landing page institucional desenvolvida para uma academia de judô, com o objetivo de apresentar a marca, as modalidades oferecidas e os canais de contato de forma clara, direta e responsiva, facilitando a captação de novos alunos.",
-    features: [
-      "Seção de apresentação da marca e modalidades",
-      "Layout responsivo para acesso via celular",
-      "Chamadas para contato e matrícula em destaque",
-      "Estrutura leve, com carregamento rápido",
-    ],
-    challenges:
-      "Transmitir a identidade e a energia de uma academia esportiva usando apenas HTML, CSS e JavaScript, sem recorrer a bibliotecas visuais prontas.",
-    solution:
-      "Uso de CSS customizado com foco em tipografia forte, contrastes e uma estrutura de seções objetiva, priorizando a jornada do visitante até o contato.",
-    objective:
-      "Aumentar a presença digital da academia e facilitar o primeiro contato de possíveis alunos.",
-    status: "Concluído",
+    id: "aresportes",
     tech: ["HTML", "CSS", "JavaScript"],
     image: Ar,
     github: "https://github.com/G-Leao/ar-esportes-landing-page",
     live: "https://ar-hazel-tau.vercel.app/",
   },
   {
-    title: "Advocacia Bilobran & Palaci",
-    category: "Web App",
-    description:
-      "Site institucional para escritório de advocacia, com áreas de atuação e contato.",
-    fullDescription:
-      "Site institucional desenvolvido para um escritório de advocacia, apresentando as áreas de atuação, a proposta de valor do escritório e os canais de contato, com um visual mais sóbrio e profissional, alinhado ao segmento jurídico.",
-    features: [
-      "Apresentação das áreas de atuação do escritório",
-      "Seção institucional sobre o escritório",
-      "Canais de contato em destaque",
-      "Layout responsivo e visual sóbrio, adequado ao segmento",
-    ],
-    challenges:
-      "Adaptar a linguagem visual para um público e segmento diferente do usual (jurídico), priorizando seriedade e confiança em vez de elementos mais chamativos.",
-    solution:
-      "Definição de uma paleta e tipografia mais sóbrias, com foco em legibilidade e organização clara das informações institucionais e de contato.",
-    objective:
-      "Fortalecer a presença digital do escritório e transmitir credibilidade a potenciais clientes.",
-    status: "Concluído",
+    id: "advocacia",
     tech: ["HTML", "CSS", "JavaScript"],
     image: Advocacia,
     github: "https://github.com/G-Leao/advocacia",
     live: "https://www.bilobranpalaciadvogados.com.br/",
   },
   {
-    title: "Sistema de Cadastro",
-    category: "Web App",
-    description:
-      "Aplicação para cadastro e gerenciamento de usuários em JavaScript puro.",
-    fullDescription:
-      "Aplicação de cadastro de usuários construída em JavaScript puro, com validação de formulário e persistência simples de dados, focada em consolidar conceitos fundamentais de manipulação do DOM e lógica de validação sem depender de frameworks.",
-    features: [
-      "Formulário de cadastro com validação de campos",
-      "Persistência simples dos dados cadastrados",
-      "Listagem e gerenciamento dos usuários cadastrados",
-      "Feedback visual de erros de preenchimento",
-    ],
-    challenges:
-      "Implementar validações robustas de formulário e persistência de dados sem o auxílio de bibliotecas, utilizando apenas JavaScript puro.",
-    solution:
-      "Criação de funções de validação reutilizáveis e uso do armazenamento local do navegador para simular persistência dos dados entre sessões.",
-    objective:
-      "Reforçar fundamentos de JavaScript puro aplicados a um caso real de cadastro e validação de dados.",
-    status: "Concluído",
+    id: "cadastro",
     tech: ["HTML", "CSS", "JavaScript"],
     image: Cadastro,
     github: "https://github.com/G-Leao/pagina-de-cadastro",
     live: "https://pagina-de-cadastro-nu.vercel.app/",
   },
   {
-    title: "Interface de Login",
-    category: "UI/UX",
-    description:
-      "Tela de autenticação moderna com foco em experiência de conversão.",
-    fullDescription:
-      "Tela de autenticação (login) desenvolvida com foco em design moderno, transições suaves e boa experiência do usuário, priorizando clareza visual e redução de fricção no processo de entrada do usuário na aplicação.",
-    features: [
-      "Layout responsivo para diferentes tamanhos de tela",
-      "Transições e microinterações suaves nos campos",
-      "Validação visual de campos de e-mail e senha",
-      "Design focado em conversão e clareza",
-    ],
-    challenges:
-      "Criar uma experiência de autenticação que parecesse moderna e agradável sem exagerar em elementos visuais que atrapalhassem a usabilidade.",
-    solution:
-      "Uso de microinterações discretas em CSS/JS, hierarquia visual clara entre os campos e botões, e testes de usabilidade focados em reduzir a fricção do preenchimento.",
-    objective:
-      "Demonstrar boas práticas de UI/UX aplicadas a um fluxo crítico: a entrada do usuário no sistema.",
-    status: "Concluído",
+    id: "login",
     tech: ["HTML", "CSS", "JavaScript"],
     image: login,
     github: "https://github.com/G-Leao/login",
     live: "https://login-page-eight-blush.vercel.app/",
   },
 ];
+
+// Resolve os textos de um projeto a partir das traduções do i18n
+function getProjectItem(id, t) {
+  const item = t(`projects.items.${id}`, { returnObjects: true });
+  return {
+    ...item,
+    category: t(`projects.categories.${item.categoryKey}`),
+    status: t("projects.status.completed"),
+  };
+}
 
 // Variantes definidas fora do componente — evita recriação a cada render
 const cubeVariants = {
@@ -273,6 +128,7 @@ const imgTransition = { duration: 0.55, ease: [0.23, 1, 0.32, 1] };
 const textTransition = { duration: 0.4, ease: [0.23, 1, 0.32, 1] };
 
 function ProjectModal({ project, onClose }) {
+  const { t } = useTranslation();
   if (!project) return null;
 
   return (
@@ -318,7 +174,7 @@ function ProjectModal({ project, onClose }) {
               </div>
               <button
                 onClick={onClose}
-                aria-label="Fechar detalhes"
+                aria-label={t("projects.closeModal")}
                 className="w-9 h-9 rounded-full border border-white/10 bg-[#020617]/80 flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 shrink-0"
               >
                 <X className="w-4 h-4" />
@@ -349,7 +205,7 @@ function ProjectModal({ project, onClose }) {
                 <div className="flex items-center gap-2 mb-3 text-cyan-300">
                   <Sparkles className="w-4 h-4" />
                   <h4 className="font-mono text-xs tracking-[0.2em] uppercase">
-                    Descrição
+                    {t("projects.modal.description")}
                   </h4>
                 </div>
                 <p className="text-slate-400 leading-relaxed">
@@ -361,7 +217,7 @@ function ProjectModal({ project, onClose }) {
                 <div className="flex items-center gap-2 mb-3 text-cyan-300">
                   <Layers className="w-4 h-4" />
                   <h4 className="font-mono text-xs tracking-[0.2em] uppercase">
-                    Principais funcionalidades
+                    {t("projects.modal.features")}
                   </h4>
                 </div>
                 <ul className="space-y-2">
@@ -382,7 +238,7 @@ function ProjectModal({ project, onClose }) {
                   <div className="flex items-center gap-2 mb-3 text-purple-300">
                     <Wrench className="w-4 h-4" />
                     <h4 className="font-mono text-xs tracking-[0.2em] uppercase">
-                      Desafio
+                      {t("projects.modal.challenge")}
                     </h4>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -393,7 +249,7 @@ function ProjectModal({ project, onClose }) {
                   <div className="flex items-center gap-2 mb-3 text-purple-300">
                     <Target className="w-4 h-4" />
                     <h4 className="font-mono text-xs tracking-[0.2em] uppercase">
-                      Solução
+                      {t("projects.modal.solution")}
                     </h4>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -404,7 +260,7 @@ function ProjectModal({ project, onClose }) {
 
               <div>
                 <h4 className="font-mono text-xs tracking-[0.2em] uppercase text-cyan-300 mb-3">
-                  Objetivo / Foco
+                  {t("projects.modal.objective")}
                 </h4>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   {project.objective}
@@ -413,15 +269,15 @@ function ProjectModal({ project, onClose }) {
 
               <div>
                 <h4 className="font-mono text-xs tracking-[0.2em] uppercase text-cyan-300 mb-3">
-                  Tecnologias
+                  {t("projects.modal.tech")}
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
+                  {project.tech.map((tech) => (
                     <span
-                      key={t}
+                      key={tech}
                       className="text-xs font-mono px-3 py-1 rounded-full border border-white/10 text-slate-300"
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>
@@ -435,7 +291,7 @@ function ProjectModal({ project, onClose }) {
                   className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Ver ao vivo
+                  {t("projects.live")}
                 </a>
                 <a
                   href={project.github}
@@ -444,7 +300,7 @@ function ProjectModal({ project, onClose }) {
                   className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
                 >
                   <Github className="w-4 h-4" />
-                  Código
+                  {t("projects.code")}
                 </a>
               </div>
             </div>
@@ -456,6 +312,7 @@ function ProjectModal({ project, onClose }) {
 }
 
 export default function Projects({ onNavigate }) {
+  const { t } = useTranslation();
   const [[index, direction], setIndexState] = useState([0, 0]);
   const [selectedProject, setSelectedProject] = useState(null);
   const isAnimating = useRef(false);
@@ -463,7 +320,7 @@ export default function Projects({ onNavigate }) {
   const wheelCooldown = useRef(null);
 
   const total = PROJECTS.length;
-  const project = PROJECTS[index];
+  const project = { ...PROJECTS[index], ...getProjectItem(PROJECTS[index].id, t) };
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "";
@@ -539,10 +396,11 @@ export default function Projects({ onNavigate }) {
         >
           <div>
             <div className="text-[10px] font-mono tracking-[0.3em] text-cyan-400/80 mb-3">
-              // PROJETOS
+              {t("projects.sectionLabel")}
             </div>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[0.95]">
-              Projetos <span className="text-gradient">Selecionados</span>
+              {t("projects.title")}{" "}
+              <span className="text-gradient">{t("projects.titleHighlight")}</span>
             </h2>
           </div>
           <span className="font-mono text-cyan-400/60 text-sm hidden md:block">
@@ -568,7 +426,7 @@ export default function Projects({ onNavigate }) {
                   initial={false}
                 >
                   <motion.img
-                    key={project.title}
+                    key={project.id}
                     src={project.image}
                     alt={project.title}
                     custom={direction}
@@ -594,7 +452,7 @@ export default function Projects({ onNavigate }) {
             {/* Setas */}
             <button
               onClick={() => goTo(-1)}
-              aria-label="Projeto anterior"
+              aria-label={t("projects.prevProject")}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-[#020617]/80 backdrop-blur-sm flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 z-10"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -602,7 +460,7 @@ export default function Projects({ onNavigate }) {
 
             <button
               onClick={() => goTo(1)}
-              aria-label="Próximo projeto"
+              aria-label={t("projects.nextProject")}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-[#020617]/80 backdrop-blur-sm flex items-center justify-center text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-300 z-10"
             >
               <ChevronRight className="w-4 h-4" />
@@ -612,7 +470,7 @@ export default function Projects({ onNavigate }) {
           <div className="relative min-h-[280px]">
             <AnimatePresence custom={direction} mode="wait" initial={false}>
               <motion.div
-                key={project.title}
+                key={project.id}
                 custom={direction}
                 variants={textVariants}
                 initial="enter"
@@ -633,12 +491,12 @@ export default function Projects({ onNavigate }) {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((t) => (
+                  {project.tech.map((tech) => (
                     <span
-                      key={t}
+                      key={tech}
                       className="text-xs font-mono px-3 py-1 rounded-full border border-white/10 text-slate-300"
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>
@@ -651,7 +509,7 @@ export default function Projects({ onNavigate }) {
                     className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    Ver ao vivo
+                    {t("projects.live")}
                   </a>
 
                   <a
@@ -661,14 +519,14 @@ export default function Projects({ onNavigate }) {
                     className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
                   >
                     <Github className="w-4 h-4" />
-                    Código
+                    {t("projects.code")}
                   </a>
 
                   <button
                     onClick={() => setSelectedProject(project)}
                     className="inline-flex items-center gap-2 text-sm px-4 py-1.5 rounded-full border border-cyan-400/30 text-cyan-300 hover:border-cyan-400/60 hover:text-cyan-200 hover:bg-cyan-400/5 transition-all duration-300"
                   >
-                    Ver detalhes
+                    {t("projects.details")}
                   </button>
                 </div>
               </motion.div>
@@ -691,7 +549,7 @@ export default function Projects({ onNavigate }) {
             onClick={() => onNavigate("experience")}
             className="text-cyan-300 hover:text-cyan-200 transition-colors"
           >
-            Ver experiência →
+            {t("projects.seeExperience")}
           </button>
         </motion.div>
       </div>

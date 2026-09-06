@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "Portfolio | Gustavo Leão",
+    "description": "Gustavo Leão — Front-end Developer specialized in React, Vite, and modern interfaces. Creating high-quality digital experiences focused on performance and UX.",
+    "keywords": "Gustavo Leão, Front-end Developer, React, JavaScript, HTML, CSS, Vite, UI/UX, Portfolio",
+    "ogTitle": "Gustavo Leão — Front-end Developer",
+    "ogDescription": "Front-end Developer specialized in React and modern technologies. I build fast, intuitive interfaces."
+  },
+  "language": {
+    "selectorLabel": "Select language",
+    "ptBR": "Portuguese (Brazil)",
+    "en": "English (United States)",
+    "ptBRShort": "PT-BR",
+    "enShort": "EN"
+  },
+  "nav": {
+    "ariaLabel": "Primary navigation",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "loader": {
+    "loading": "LOADING PORTFOLIO",
+    "role": "FRONT-END DEVELOPER"
+  },
+  "hero": {
+    "available": "AVAILABLE FOR PROJECTS",
+    "headline": ["FRONT-END", "DEVELOPER"],
+    "description": "Developer focused on building modern, responsive, and functional web applications. I turn ideas into digital experiences using React, JavaScript, and current technologies.",
+    "viewProjects": "View Projects",
+    "contact": "Contact",
+    "scrollDown": "LEARN MORE",
+    "stats": {
+      "labels": {
+        "projects": "Projects",
+        "technology": "Technology",
+        "education": "Education"
+      },
+      "values": {
+        "education": "Software Engineering"
+      }
+    }
+  },
+  "about": {
+    "sectionLabel": "// ABOUT ME",
+    "badge": "FRONT-END DEVELOPER",
+    "terminalLine": "const dev = { name: 'Gustavo Leão', focus: 'front-end', status: 'in progress' };",
+    "titleStart": "Front-end",
+    "titleHighlight": "Developer",
+    "paragraph1": "I'm a Software Engineering student and developer focused on building modern, responsive, and functional web applications. I enjoy turning ideas into well-structured interfaces and simple-to-use experiences.",
+    "paragraph2": "Right now, I'm deepening my knowledge of React, TypeScript, APIs, and full stack development — always putting learning into practice through my own projects.",
+    "values": {
+      "precision": {
+        "title": "Precision",
+        "desc": "Every line of code, every interaction, and every detail is developed with attention and care, focused on delivering the best possible experience."
+      },
+      "quality": {
+        "title": "Quality",
+        "desc": "Clean code and best practices are fundamental. Modern, responsive interfaces that stand out for excellence."
+      },
+      "vision": {
+        "title": "Vision",
+        "desc": "Always learning and evolving, building interfaces that don't just work but deliver real value to users."
+      }
+    },
+    "knowledge": {
+      "sectionLabel": "// KNOWLEDGE LEVEL",
+      "title": "Technologies I master",
+      "responsive": "Responsive Design"
+    },
+    "stack": {
+      "sectionLabel": "// STACK",
+      "title": "Daily tools"
+    },
+    "process": {
+      "sectionLabel": "// HOW I WORK",
+      "title": "My process",
+      "steps": {
+        "understand": {
+          "title": "Understand",
+          "desc": "I analyze the problem, the audience, and the goals before a single line of code."
+        },
+        "plan": {
+          "title": "Plan",
+          "desc": "I organize structure, screen flows, and technical priorities."
+        },
+        "develop": {
+          "title": "Develop",
+          "desc": "I build with clean, componentized, easy-to-maintain code."
+        },
+        "evolve": {
+          "title": "Evolve",
+          "desc": "I refine, optimize performance, and apply what I learn on every delivery."
+        }
+      }
+    },
+    "cta": "View full experience"
+  },
+  "experience": {
+    "sectionLabel": "// EXPERIENCE",
+    "titleStart": "The",
+    "titleHighlight": "Journey",
+    "description": "Software Engineering student at UniCesumar, focused on front-end — React, TypeScript, JavaScript, HTML, and CSS. I build real projects from scratch through business logic, always prioritizing clean code and accessibility. Looking for an internship or junior role in web development.",
+    "branchProfessional": "Professional",
+    "branchEducation": "Education",
+    "certifications": "Certifications",
+    "mergeText": "Let's build something",
+    "roles": {
+      "salesConsultant": {
+        "period": "2025 — Present",
+        "role": "Sales Consultant",
+        "company": "Gravina Jóias e Relógios",
+        "desc": "Customer service, organization, negotiation, and the development of essential interpersonal skills.",
+        "achievements": [
+          "Customer service",
+          "Organization and management",
+          "Negotiation",
+          "Customer relationships",
+          "Teamwork",
+          "Problem-solving"
+        ]
+      }
+    },
+    "education": {
+      "softwareEngineering": {
+        "period": "May 2025 — May 2029",
+        "role": "Software Engineering",
+        "company": "UniCesumar",
+        "desc": "Focused on front-end development — React, TypeScript, JavaScript, HTML, and CSS. Building real projects from scratch through business logic, always prioritizing clean code and accessibility.",
+        "highlight": true,
+        "achievements": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "HTML & CSS",
+          "Accessibility and best practices"
+        ]
+      },
+      "itProjectManagement": {
+        "period": "Feb 2023 — Dec 2024",
+        "role": "IT Project Management",
+        "company": "Alura",
+        "desc": "Complementary training in technology project management.",
+        "achievements": ["Project management", "Agile methodologies"]
+      },
+      "complementary": {
+        "period": "Oct 2023",
+        "role": "Complementary Course",
+        "company": "Alura",
+        "desc": "Short-term course on the technology track.",
+        "achievements": []
+      }
+    },
+    "certificationsList": [
+      "Potencializando Seus Estudos e Carreira com IA (Chatbots, Copilotos e Agentes)",
+      "Fundamentos da IA Moderna: Machine Learning, LLMs, IA Generativa e Agentes",
+      "GitHub: compartilhando seus projetos",
+      "HTML e CSS: praticando HTML/CSS",
+      "HTML e CSS: responsividade com mobile-first"
+    ]
+  },
+  "projects": {
+    "sectionLabel": "// PROJECTS",
+    "title": "Selected",
+    "titleHighlight": "Projects",
+    "live": "View Live",
+    "code": "Code",
+    "details": "View details",
+    "seeExperience": "View experience →",
+    "closeModal": "Close details",
+    "prevProject": "Previous project",
+    "nextProject": "Next project",
+    "status": {
+      "completed": "Completed"
+    },
+    "categories": {
+      "react": "React",
+      "webapp": "Web App",
+      "webappReact": "React Web App",
+      "fullstack": "Full Stack Web App",
+      "uix": "UI/UX"
+    },
+    "modal": {
+      "description": "Description",
+      "features": "Key features",
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "objective": "Objective / Focus",
+      "tech": "Technologies"
+    },
+    "items": {
+      "portfolio": {
+        "title": "Professional Portfolio",
+        "categoryKey": "react",
+        "description": "A personal React portfolio built to showcase my projects, skills, and experience, focused on a modern, responsive, and interactive interface.",
+        "fullDescription": "I built this portfolio as a way to present my work and my growth in software development. The app was designed with more than visuals in mind — navigation experience matters too — so I used animations, transitions, and reusable components to create a more dynamic feel.",
+        "features": [
+          "Smooth animated navigation between sections",
+          "Responsive design for mobile, tablet, and desktop",
+          "Reusable component architecture in React",
+          "Vite-optimized build for fast loading times"
+        ],
+        "challenges": "Balancing a rich animated look (Framer Motion, gradients, glassmorphism effects) without compromising load performance and smoothness on low-end devices.",
+        "solution": "Lightweight, reusable components, lazy-loaded assets, and fine-tuned Framer Motion transitions to keep 60fps even on simpler screens.",
+        "objective": "Serve as a technical business card, demonstrating mastery of React, animations, and UI/UX best practices."
+      },
+      "gestao": {
+        "title": "Sales Management System",
+        "categoryKey": "webapp",
+        "description": "A web system designed to organize sales, customers, and business information in a single platform.",
+        "fullDescription": "A web app built for sales teams, making it possible to register customers, record sales, and track daily commercial flow in an organized way. The goal was to replace manual controls (scattered spreadsheets) with one centralized interface.",
+        "features": [
+          "Customer registration and management",
+          "Sales history and logging",
+          "Whole sales flow organized in one screen",
+          "Interface designed for quick daily use"
+        ],
+        "challenges": "Structuring sales and customer data neatly using only base technologies (plain HTML, CSS, and JavaScript) with no framework to manage state.",
+        "solution": "Careful data modeling in JavaScript and direct DOM manipulation to keep the interface reactive and synchronized with stored information.",
+        "objective": "Ease the sales team's routine by reducing errors and rework caused by scattered manual controls."
+      },
+      "watchhub": {
+        "title": "Watch Hub",
+        "categoryKey": "webappReact",
+        "description": "An app to register, manage, and compare watches.",
+        "fullDescription": "Built for watch collectors and enthusiasts, the app lets you register collection pieces, organize each model's details, and compare them side by side to support buying decisions — or simply keep your collection in order.",
+        "features": [
+          "Watch registration with model-specific details",
+          "Side-by-side comparison of two or more watches",
+          "Visual organization of the user's collection",
+          "Reactive interface built with React components"
+        ],
+        "challenges": "Building a comparison logic that is visually clear, highlighting differences between models without cluttering the screen with too much information.",
+        "solution": "Splitting the interface into independent per-watch components and using React state to sync the selection and the comparative view in real time.",
+        "objective": "Provide a simple, visual tool to organize and compare collection items."
+      },
+      "publibus": {
+        "title": "PUBLI-BUS",
+        "categoryKey": "fullstack",
+        "description": "A platform for managing bus advertising, controlling advertisers, campaigns, and ad spaces.",
+        "fullDescription": "A system designed to simplify the management of advertising campaigns on buses. The platform centralizes advertiser, campaign, and ad-space data, offering an admin interface to track and organize operations more efficiently.",
+        "features": [
+          "Advertiser registration and management",
+          "Campaign creation and management",
+          "Control of display spaces and devices",
+          "Authentication and user management system",
+          "Dashboard for tracking key information",
+          "Frontend, API, and database integration"
+        ],
+        "challenges": "Building a complete application that connects the frontend to the backend and the database while keeping data secure, organized, and in sync.",
+        "solution": "A full stack architecture using React on the frontend, Node.js and Express on the backend, Prisma for database access, and authentication for access control.",
+        "objective": "Create a centralized platform for managing bus advertising, making advertiser and campaign control more organized and efficient."
+      },
+      "aresportes": {
+        "title": "AR Esportes",
+        "categoryKey": "webapp",
+        "description": "An institutional site for a judo academy, presenting the brand and its disciplines.",
+        "fullDescription": "An institutional landing page for a judo academy, designed to present the brand, the disciplines offered, and contact channels in a clear, direct, and responsive way — helping to bring in new students.",
+        "features": [
+          "Brand and discipline presentation section",
+          "Responsive layout for mobile access",
+          "Highlighted calls to action for contact and enrollment",
+          "Lightweight structure with fast loading"
+        ],
+        "challenges": "Conveying the identity and energy of a sports academy using only HTML, CSS, and JavaScript — no ready-made visual libraries.",
+        "solution": "Custom CSS focused on strong typography, contrasts, and straightforward sections, prioritizing the visitor's journey toward contact.",
+        "objective": "Grow the academy's digital presence and make first contact with prospective students easier."
+      },
+      "advocacia": {
+        "title": "Bilobran & Palaci Law Firm",
+        "categoryKey": "webapp",
+        "description": "An institutional site for a law firm, covering practice areas and contact info.",
+        "fullDescription": "An institutional website for a law firm, presenting practice areas, the firm's value proposition, and contact channels with a sober, professional look in line with the legal segment.",
+        "features": [
+          "Presentation of the firm's practice areas",
+          "Institutional section about the firm",
+          "Highlighted contact channels",
+          "Responsive layout with a sober visual suited to the segment"
+        ],
+        "challenges": "Adapting the visual language for an audience and segment outside the usual (legal), prioritizing seriousness and trust over flashy elements.",
+        "solution": "A more restrained palette and typography, focused on readability and clear organization of institutional and contact information.",
+        "objective": "Strengthen the firm's digital presence and convey credibility to potential clients."
+      },
+      "cadastro": {
+        "title": "User Registration System",
+        "categoryKey": "webapp",
+        "description": "A user registration and management app built with vanilla JavaScript.",
+        "fullDescription": "A user registration app built with vanilla JavaScript, featuring form validation and simple data persistence, designed to consolidate core DOM manipulation and validation concepts without depending on frameworks.",
+        "features": [
+          "Registration form with field validation",
+          "Simple persistence of registered data",
+          "Listing and management of registered users",
+          "Visual feedback for filling errors"
+        ],
+        "challenges": "Implementing robust form validation and data persistence without libraries, using only vanilla JavaScript.",
+        "solution": "Reusable validation functions and browser local storage to simulate persistence between sessions.",
+        "objective": "Reinforce vanilla JavaScript fundamentals applied to a real registration and validation case."
+      },
+      "login": {
+        "title": "Login Interface",
+        "categoryKey": "uix",
+        "description": "A modern authentication screen focused on conversion experience.",
+        "fullDescription": "An authentication (login) screen designed with a modern look, smooth transitions, and a strong focus on user experience — prioritizing visual clarity and reducing friction in the sign-in flow.",
+        "features": [
+          "Responsive layout for different screen sizes",
+          "Smooth transitions and micro-interactions on fields",
+          "Visual validation for email and password fields",
+          "Design focused on conversion and clarity"
+        ],
+        "challenges": "Creating an authentication experience that feels modern and pleasant without overdoing visual elements that could hurt usability.",
+        "solution": "Subtle CSS/JS micro-interactions, clear visual hierarchy between fields and buttons, and usability tests focused on reducing fill friction.",
+        "objective": "Demonstrate UI/UX best practices applied to a critical flow: user sign-in."
+      }
+    }
+  },
+  "contact": {
+    "sectionLabel": "CONTACTS",
+    "title": "Let's build",
+    "titleHighlight": "something",
+    "subtitle": "I'm not a fan of forms. Talk to me through the terminal.",
+    "terminalTitle": "gustavo@contato — zsh",
+    "boot": "system ready. type 'help' to see available commands.",
+    "placeholder": "type 'help'...",
+    "commandError": "command not found: \"{{cmd}}\". type 'help'.",
+    "helpCommand": "available commands:",
+    "whoami": [
+      "Gustavo Leão — Software Engineering student (UniCesumar).",
+      "Front-end focus: React, TypeScript, JavaScript, HTML & CSS.",
+      "Ponta Grossa, Paraná — looking for an internship or junior role."
+    ],
+    "skills": "React · TypeScript · JavaScript · HTML · CSS · Responsive Web Design"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "messageStart": "The page",
+    "messageEnd": "could not be found in this application.",
+    "adminNote": "Admin Note",
+    "adminContent": "This may mean that the AI hasn't implemented this page yet. Ask for it in the chat.",
+    "backHome": "Back to Home"
+  }
+}
