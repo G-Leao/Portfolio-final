@@ -185,7 +185,7 @@ export default function Experience({ onNavigate }) {
   const CERTIFICATIONS = t("experience.certificationsList", { returnObjects: true });
 
   return (
-    <section className="relative w-full min-h-screen py-24 md:py-28 px-6 md:px-10 lg:px-16">
+    <section className="relative w-full min-h-screen pt-32 md:pt-36 pb-24 md:pb-28 px-6 md:px-10 lg:px-16">
       {/* Two-column Hero */}
       <div className="max-w-5xl mx-auto mb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -224,7 +224,7 @@ export default function Experience({ onNavigate }) {
                 <img
                   src={logoImg}
                   alt="Gustavo Leão"
-                  className="h-8 md:h-20 w-auto object-contain"
+                  className="h-12 md:h-28 w-auto object-contain"
                   style={{
                     filter:
                       "drop-shadow(0 0 25px rgba(59,130,246,0.30)) drop-shadow(0 0 60px rgba(59,130,246,0.15))",

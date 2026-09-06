@@ -35,7 +35,6 @@ import {
 } from "react-icons/si";
 import { useTranslation } from "react-i18next";
 import ABOUT_IMAGE from "../assets/img/gustavo.jpeg";
-import logoImg from "@/assets/img/logoGustavo.png";
 
 const VALUES = [
   { id: "precision", icon: Target },
@@ -425,16 +424,6 @@ export default function About({ onNavigate, activePage }) {
           </svg>
         )}
       </div>
-
-      {/* Logo */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-        className="absolute top-6 left-6 md:top-8 md:left-10 lg:left-16 z-10"
-      >
-        <img src={logoImg} alt="Gustavo Leão" className="h-6 md:h-10 w-auto object-contain" loading="lazy" />
-      </motion.div>
 
       <div className="max-w-7xl mx-auto space-y-24 md:space-y-32">
         {/* SOBRE MIM */}

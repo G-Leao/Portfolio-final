@@ -22,7 +22,7 @@ export default function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t("language.selectorLabel")}
-      className="fixed top-4 right-4 md:top-5 md:right-6 z-[60]"
+      className="fixed top-4 left-4 md:top-5 md:left-6 z-[60]"
     >
       <div className="flex items-center gap-1 p-1 rounded-full border border-white/10 bg-[#020617]/80 backdrop-blur-2xl shadow-2xl shadow-black/40">
         {LANGS.map((lang) => {

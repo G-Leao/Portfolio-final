@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import logoImg from "@/assets/img/logoGustavo.png";
 import {
   Home as HomeIcon,
   User,
@@ -21,7 +20,6 @@ const NAV_ITEMS = [
 export default function FloatingNav({
   activePage,
   onNavigate,
-  showLogo = false,
   fixed = true,
 }) {
   const { t } = useTranslation();
@@ -38,20 +36,6 @@ export default function FloatingNav({
       `}
         aria-label={t("nav.ariaLabel")}
       >
-        {/* Logo - apenas na Home */}
-        {showLogo && (
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="cursor-pointer hidden md:block absolute left-4 top-1/2 -translate-y-1/2"
-          >
-            <img
-              src={logoImg}
-              alt="Gustavo Leão"
-              className="h-8 md:h-12 w-auto object-contain"
-            />
-          </motion.div>
-        )}
-
         {/* Menu de Navegação */}
         <div className="flex items-center gap-0.5 px-1 md:px-2 py-1 md:py-2 rounded-none md:rounded-2xl border-t md:border border-white/10 bg-[#020617]/95 md:bg-white/[0.04] backdrop-blur-2xl shadow-2xl shadow-black/40 w-full md:w-auto justify-center">
           {NAV_ITEMS.map((item) => {
